@@ -1,0 +1,30 @@
+import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios from 'axios'
+import cache from '@/utils/cache'
+import config from '@/config/net.config'
+
+const { baseURL } = config
+
+const axiosInstance = axios.create({
+  baseURL: baseURL
+})
+
+export const request = <T = any>(url: string, config: AxiosRequestConfig): Promise<API.Response<T>> => {
+  return new Promise((resolve, reject) => {
+    axiosInstance
+      .request({
+        url,
+        headers: {
+          Authorization: cache.get('token') || ''
+        },
+        ...(config || {})
+      })
+      .then((response: AxiosResponse<API.Response<T>>) => {
+        resolve(response.data)
+      })
+      .catch((error: AxiosError) => {
+        console.log('网络错误')
+        reject(error)
+      })
+  })
+}
