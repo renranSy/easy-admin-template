@@ -1,7 +1,8 @@
 import { Menu, MenuProps } from 'antd'
 import { AppstoreOutlined, DashboardOutlined, MenuOutlined, RocketOutlined, UserOutlined } from '@ant-design/icons'
-import { useNavigate } from 'react-router-dom'
-import React from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import Sider from 'antd/es/layout/Sider'
 
 // type MenuItem = Required<MenuProps>['items'][number]
 
@@ -29,14 +30,14 @@ import React from 'react'
 //   ])
 // ]
 export const MenuItems = [
-  { label: '主页', key: '/', icon: <DashboardOutlined /> },
-  { label: '用户', key: '/user', icon: <UserOutlined /> },
-  { label: '系统信息', key: '/info', icon: <AppstoreOutlined /> },
-  { label: '资源推荐', key: '/resource', icon: <RocketOutlined /> },
+  { label: '主页', key: '/', icon: <DashboardOutlined style={{ fontSize: '18px' }} /> },
+  { label: '用户', key: '/user', icon: <UserOutlined style={{ fontSize: '18px' }} /> },
+  { label: '系统信息', key: '/info', icon: <AppstoreOutlined style={{ fontSize: '18px' }} /> },
+  { label: '资源推荐', key: '/resource', icon: <RocketOutlined style={{ fontSize: '18px' }} /> },
   {
     label: '多级菜单',
     key: '/multi',
-    icon: <MenuOutlined />,
+    icon: <MenuOutlined style={{ fontSize: '18px' }} />,
     children: [
       {
         label: '一级菜单',
@@ -55,16 +56,52 @@ export const MenuItems = [
 ]
 
 const Sidebar = () => {
+  const location = useLocation()
   const navigate = useNavigate()
-  const onClick: MenuProps['onClick'] = (e) => {
+
+  const [collapsed, setCollapsed] = useState(false)
+
+  const [windowWidth, setWindowWidth] = useState(0)
+
+  const windowResize = () => {
+    setWindowWidth(window.innerWidth)
+  }
+
+  // 菜单展开收起
+  useEffect(() => {
+    windowWidth < 992 ? setCollapsed(true) : setCollapsed(false)
+  }, [windowWidth])
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+
+    window.addEventListener('resize', windowResize)
+
+    return () => {
+      window.removeEventListener('resize', windowResize)
+    }
+  }, [])
+
+  const handleClickMenuItem: MenuProps['onClick'] = (e) => {
     navigate(e.key)
-    console.log(MenuItems)
   }
 
   return (
-    <div className="shadow-lg h-full">
-      <Menu style={{ height: '100%' }} onClick={onClick} items={MenuItems} mode="inline"></Menu>
-    </div>
+    <Sider
+      collapsible
+      collapsed={collapsed}
+      theme="light"
+      className="shadow-lg"
+      width="200"
+      style={{ height: 'calc(100vh - 70px)' }}>
+      <Menu
+        className="h-full"
+        defaultSelectedKeys={[location.pathname]}
+        selectedKeys={[location.pathname]}
+        onClick={handleClickMenuItem}
+        items={MenuItems}
+        mode="inline"></Menu>
+    </Sider>
   )
 }
 
