@@ -11,6 +11,7 @@ import SystemInfo from './views/systemInfo'
 import One from '@/views/multiMenu/one'
 import PageOne from '@/views/multiMenu/two/pageOne'
 import PageTwo from '@/views/multiMenu/two/pageTwo'
+import Resource from '@/views/resource/resource'
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
           <Route path="/" element={<Layouts />}>
             <Route path="/" element={<Home />} />
             <Route path="/user" element={<User />} />
-            <Route path="/system/info" element={<SystemInfo />} />
+            <Route path="/info" element={<SystemInfo />} />
+            <Route path="/resource" element={<Resource />} />
             <Route path="/one" element={<One />} />
             <Route path="/two/one" element={<PageOne />} />
             <Route path="/two/two" element={<PageTwo />} />
