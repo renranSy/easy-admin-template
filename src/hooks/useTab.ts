@@ -12,26 +12,39 @@ export type Item = {
   key: string
   children?: Item[]
 }
-const TAB_LIST = []
+let TAB_LIST: Tab[] = []
 
-const getTabItems = (menuItems: Item[]) => {
-  for (const menuItem of menuItems) {
-    if (!menuItem.children) {
-      TAB_LIST.push({
-        label: menuItem.label,
-        pathname: menuItem.key
-      })
-      return
-    }
-    getTabItems(menuItem.children)
+const flattenMenu = (menu: Item[]) => {
+  const flattenedMenu: Item[] = []
+
+  const flatten = (menuItems: Item[], parentKey = '') => {
+    menuItems.forEach((item) => {
+      const itemKey = parentKey + item.key
+      flattenedMenu.push(item)
+
+      if (item.children) {
+        flatten(item.children, itemKey + '/')
+      }
+    })
   }
+
+  flatten(menu)
+  return flattenedMenu
 }
+
 const getLabel = (pathname: string) => {
-  return MenuItems?.filter((item) => item!.key === pathname)[0].label
+  console.log(TAB_LIST)
+  return TAB_LIST.filter((item) => item.pathname === pathname)[0].label
 }
 
 export const useTab = () => {
-  getTabItems(MenuItems)
+  TAB_LIST = flattenMenu(MenuItems).map((item) => {
+    return {
+      label: item.label,
+      pathname: item.key
+    }
+  })
+
   const location = useLocation()
   const navigate = useNavigate()
 
