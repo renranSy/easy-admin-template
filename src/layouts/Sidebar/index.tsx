@@ -1,5 +1,5 @@
 import { Menu, MenuProps } from 'antd'
-import { AppstoreOutlined, HomeOutlined, MenuOutlined, UserOutlined } from '@ant-design/icons'
+import { AppstoreOutlined, DashboardOutlined, MenuOutlined, RocketOutlined, UserOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import React from 'react'
 
@@ -29,9 +29,10 @@ import React from 'react'
 //   ])
 // ]
 export const MenuItems = [
-  { label: '主页', key: '/', icon: <HomeOutlined /> },
+  { label: '主页', key: '/', icon: <DashboardOutlined /> },
   { label: '用户', key: '/user', icon: <UserOutlined /> },
-  { label: '系统信息', key: '/system/info', icon: <AppstoreOutlined /> },
+  { label: '系统信息', key: '/info', icon: <AppstoreOutlined /> },
+  { label: '资源推荐', key: '/resource', icon: <RocketOutlined /> },
   {
     label: '多级菜单',
     key: '/multi',
