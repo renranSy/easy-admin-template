@@ -33,7 +33,6 @@ const flattenMenu = (menu: Item[]) => {
 }
 
 const getLabel = (pathname: string) => {
-  console.log(TAB_LIST)
   return TAB_LIST.filter((item) => item.pathname === pathname)[0].label
 }
 
@@ -72,7 +71,6 @@ export const useTab = () => {
     const hasTab = tabList.findIndex((item) => item.pathname === tab.pathname) !== -1
 
     if (!hasTab) {
-      console.log([...tabList, tab])
       setTabList([...tabList, tab])
       cache.set('tabList', JSON.stringify([...tabList, tab]))
     }
@@ -86,7 +84,6 @@ export const useTab = () => {
 
   useEffect(() => {
     if (tabList.length === 0) {
-      console.log(111)
       setTabList([{ pathname: '/', label: getLabel('/') }])
       setActiveTab({ pathname: '/', label: getLabel('/') })
       navigate('/')

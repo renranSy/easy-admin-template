@@ -10,7 +10,6 @@ const Home = () => {
 
   useAsync(async () => {
     const resp = await getData()
-    console.log(resp)
     setData(resp.data)
   }, [])
 

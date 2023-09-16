@@ -32,8 +32,8 @@ import Sider from 'antd/es/layout/Sider'
 export const MenuItems = [
   { label: '主页', key: '/', icon: <DashboardOutlined style={{ fontSize: '18px' }} /> },
   { label: '用户', key: '/user', icon: <UserOutlined style={{ fontSize: '18px' }} /> },
-  { label: '系统信息', key: '/info', icon: <AppstoreOutlined style={{ fontSize: '18px' }} /> },
   { label: '资源推荐', key: '/resource', icon: <RocketOutlined style={{ fontSize: '18px' }} /> },
+  { label: '系统信息', key: '/info', icon: <AppstoreOutlined style={{ fontSize: '18px' }} /> },
   {
     label: '多级菜单',
     key: '/multi',
@@ -90,6 +90,7 @@ const Sidebar = () => {
     <Sider
       collapsible
       collapsed={collapsed}
+      onCollapse={(value) => setCollapsed(value)}
       theme="light"
       className="shadow-lg"
       width="200"
