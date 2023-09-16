@@ -94,7 +94,7 @@ const Sidebar = () => {
       theme="light"
       className="shadow-lg"
       width="200"
-      style={{ height: 'calc(100vh - 70px)' }}>
+      style={{ height: 'calc(100vh - 56px)' }}>
       <Menu
         className="h-full"
         defaultSelectedKeys={[location.pathname]}
