@@ -1,100 +1,49 @@
 <img height="80px" src="https://github.com/renranSy/easy-admin-template/blob/main/public/logo.svg" alt="Logo of the project" align="right">
 
-# Easy admin template &middot; [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
-> Additional information or tag line
+# Easy admin template  [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
+> 那是一个秋天，夏天的炎热随着秋天的落叶🍂一同逝去，而我创建下了这个项目，作为留在这个秋天的一点痕迹......
 
 A brief description of your project, what it is used for.
 
-## Installing / Getting started
+## 简介
 
-A quick introduction of the minimal setup you need to get a hello world up &
-running.
+`Easy-admin-template`是一个免费开源的中后台模版，使用了`React18`、`vite`、`react-router-dom v6`、`less`等主流技术开发，开箱即用的中后天前端解决方案。
 
-```shell
-commands here
-```
+项目目的：
 
-Here you should say what actually happens when you execute the code above.
+- 学习`React Hook`相关 Api
+- 使用`Eslint`进行语法检查，使用`prettier`规范代码
+- 学习`react-router-dom`
+- 掌握使用`vite`构建项目
+- 理清后台系统搭建思路
 
-## Developing
+## 特性
 
-### Built With
-List main libraries, frameworks used including versions (React, Angular etc...)
+- 技术栈：React、react-router-dom、vite、less
+- Mock 模拟数据
+- Ant Design组件库
+- 可自定义主题（待开发⛏）
 
-### Prerequisites
-What is needed to set up the dev environment. For instance, global dependencies or any other tools. include download links.
-
-
-### Setting up Dev
-
-Here's a brief intro about what a developer must do in order to start developing
-the project further:
+## 获取代码
 
 ```shell
-git clone https://github.com/your/your-project.git
-cd your-project/
-packagemanager install
+git clone https://github.com/renranSy/easy-admin-template.git
 ```
 
-And state what happens step-by-step. If there is any virtual environment, local server or database feeder needed, explain here.
-
-### Building
-
-If your project needs some additional steps for the developer to build the
-project after some code changes, state them here. for example:
+- 安装依赖
 
 ```shell
-./configure
-make
-make install
+yarn install
 ```
 
-Here again you should state what actually happens when the code above gets
-executed.
-
-### Deploying / Publishing
-give instructions on how to build and release a new version
-In case there's some step you have to take that publishes this project to a
-server, this is the right time to state it.
+- 运行
 
 ```shell
-packagemanager deploy your-project -s server.com -u username -p password
+yarn dev
 ```
 
-And again you'd need to tell what the previous code actually does.
-
-## Versioning
-
-We can maybe use [SemVer](http://semver.org/) for versioning. For the versions available, see the [link to tags on this repository](/tags).
-
-
-## Configuration
-
-Here you should write what are all of the configurations a user can enter when using the project.
-
-## Tests
-
-Describe and show how to run the tests with code examples.
-Explain what these tests test and why.
+- 打包
 
 ```shell
-Give an example
+yarn build
 ```
-
-## Style guide
-
-Explain your code style and show how to check it.
-
-## Api Reference
-
-If the api is external, link to api documentation. If not describe your api including authentication methods as well as explaining all the endpoints with their required parameters.
-
-
-## Database
-
-Explaining what database (and version) has been used. Provide download links.
-Documents your database design and schemas, relations etc...
-
-## Licensing
-
-State what the license is and how to find the text version of the license.
