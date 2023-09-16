@@ -1,13 +1,15 @@
 <img height="80px" src="https://github.com/renranSy/easy-admin-template/blob/main/public/logo.svg" alt="Logo of the project" align="right">
 
 # Easy admin template  [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
+
 > 那是一个秋天，夏天的炎热随着秋天的落叶🍂一同逝去，而我创建下了这个项目，作为留在这个秋天的一点痕迹......
 
 A brief description of your project, what it is used for.
 
 ## 简介
 
-`Easy-admin-template`是一个免费开源的中后台模版，使用了`React18`、`vite`、`react-router-dom v6`、`less`等主流技术开发，开箱即用的中后天前端解决方案。
+`Easy-admin-template`是一个免费开源的中后台模版，使用了`React18`、`vite`、`react-router-dom v6`、`less`
+等主流技术开发，开箱即用的中后天前端解决方案。
 
 项目目的：
 
@@ -47,3 +49,17 @@ yarn dev
 ```shell
 yarn build
 ```
+
+## 浏览器支持
+
+本地开发推荐使用`Chrome 80+` 浏览器
+
+支持现代浏览器, 不支持 IE
+
+## 维护者
+
+[@renranSy](https://github.com/renranSy)
+
+## 参考项目
+
+[Arco admin template](https://github.com/renranSy/easy-admin-template.git)
