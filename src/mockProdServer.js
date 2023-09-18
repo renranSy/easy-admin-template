@@ -5,7 +5,7 @@ import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer'
 import userMock from '../mock/user'
 import routerMock from '../mock/router'
 import resourceMock from '../mock/resource'
-import workplaceMock from '../mock/workplace'
+import workplaceMock from '../mock/workbench.js'
 
 export const setupProdMockServer = () => {
   createProdMockServer([...userMock, ...routerMock, ...resourceMock, ...workplaceMock])

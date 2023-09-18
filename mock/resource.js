@@ -1,221 +1,178 @@
-const prefix = 'https://raw.githubusercontent.com/hu-snail/arco-admin-template/master/src/assets/logo/';
-
-const list = [
-  {
-    title: 'React文档',
-    desc: '构建用户界面的 JavaScript 库',
-    url: 'https://react.docschina.org/',
-    logo: 'logo.svg'
-  },
-  {
-    title: 'Arco Desgin',
-    desc: '字节跳动出品的企业级设计系统',
-    url: 'https://arco.design/react/docs/start',
-    logo: 'arco-logo.svg'
-  },
-  {
-    title: 'Ant Design',
-    desc: '为 Web 应用提供了丰富的基础 UI 组件',
-    url: 'https://ant.design/docs/react/introduce-cn',
-    logo: 'antd-logo.svg'
-  },
-  {
-    title: 'Semi Desgin',
-    desc: ' 由字节跳动抖音前端与 UED 团队设计、开发并维护',
-    url: 'https://semi.design/zh-CN/',
-    logo: 'semi-logo.png'
-  },
-  {
-    title: 'Element UI',
-    desc: '饿了么出品的 React 组件库',
-    url: 'https://elemefe.github.io/element-react/#/zh-CN/quick-start',
-    logo: 'element-logo.svg'
-  },
-  {
-    title: 'Vite 中文文档',
-    desc: '下一代前端开发与构建工具',
-    url: 'https://vitejs.cn/',
-    logo: 'vite-logo.svg'
-  },
-  {
-    title: 'Create App',
-    desc: '让你仅通过一行命令，即可构建现代化的 Web 应用',
-    url: 'https://create-react-app.bootcss.com/',
-    logo: 'create-app-logo.svg'
-  },
-  {
-    title: 'Next.js',
-    desc: 'Next.js 为您提供生产所需的所有功能的最佳开发人员体验',
-    url: 'https://github.com/vercel/next.js',
-    logo: 'next-logo.png'
-  },
-  {
-    title: 'Gatsby.js',
-    desc: '使用 React 构建快速、现代的应用程序和网站',
-    url: 'https://github.com/gatsbyjs/gatsby',
-    logo: 'gatsby-logo.svg'
-  },
-  {
-    title: 'Remix',
-    desc: ' 建立更好的网站。使用 Web 基础创建现代、有弹性的用户体验',
-    url: 'https://github.com/remix-run/remix',
-    logo: 'remix-logo.png'
-  },
-  {
-    title: 'Redux',
-    desc: 'A Predictable State Container for JS Apps',
-    url: 'https://vueuse.org/',
-    logo: 'redux-logo.svg'
-  },
-  {
-    title: 'Mobx',
-    desc: '简单、可扩展的状态管理',
-    url: 'https://github.com/mobxjs/mobx',
-    logo: 'mobx-logo.png'
-  },
-  {
-    title: 'React Query',
-    desc: '在您的 React 和 React Native 应用程序中获取、缓存和更新数据，而无需触及任何“全局状态”',
-    url: 'https://github.com/pmndrs/zustand',
-    logo: 'react-query-logo.svg'
-  },
-  {
-    title: 'React Router',
-    desc: 'React 的声明式路由',
-    url: 'https://github.com/remix-run/react-router',
-    logo: 'router-logo.png'
-  }
-];
-
-const communityList = [
-  {
-    title: '掘金',
-    desc: '一个帮助开发者成长的社区',
-    url: 'https://juejin.cn/',
-    logo: 'https://qiqihao.oss-cn-beijing.aliyuncs.com/static/coderutil/icon/juejin.png'
-  },
-  {
-    title: 'SF思否',
-    desc: '思否是中国领先的开发者技术社区',
-    url: 'https://segmentfault.com/',
-    logo: 'http://coderutil.oss-cn-beijing.aliyuncs.com/bbs-image/file_87feae864e274579824d7398a588e042.png'
-  },
-  {
-    title: 'CSDN',
-    desc: '中文最大的技术社区',
-    url: 'https://www.csdn.net/',
-    logo: 'https://qiqihao.oss-cn-beijing.aliyuncs.com/static/coderutil/icon/csdn.png'
-  },
-  {
-    title: '开源中国',
-    desc: '目前国内最大的开源技术社区',
-    url: 'https://www.oschina.net/',
-    logo: 'https://qiqihao.oss-cn-beijing.aliyuncs.com/static/coderutil/icon/oschina.ico'
-  },
-  {
-    title: 'StackOverflow',
-    desc: '全球最大的技术问答社区',
-    url: 'https://stackoverflow.com/',
-    logo: 'https://qiqihao.oss-cn-beijing.aliyuncs.com/static/coderutil/icon/stackoverflow.svg'
-  },
-  {
-    title: '菜鸟教程',
-    desc: '学的不仅是技术，更是梦想',
-    url: 'https://www.runoob.com/',
-    logo: 'https://static.runoob.com/images/favicon.ico'
-  }
-];
-
 const teamList = [
   {
-    title: '阿里技术团队',
-    desc: '来源：CSDN',
-    url: 'https://blog.csdn.net/Taobaojishu',
-    logo: 'http://coderutil.oss-cn-beijing.aliyuncs.com/bbs-image/file_b2f6357dbd094a31a9f48531d0dbfdcc.png'
+    name: '腾讯Web前端团队',
+    link: 'http://www.alloyteam.com/',
+    avatar: '/src/assets/logo/alloyteam.ico'
   },
   {
-    title: '字节跳动团队',
-    desc: '来源：CSDN',
-    url: 'https://blog.csdn.net/ByteDanceTech',
-    logo: 'http://coderutil.oss-cn-beijing.aliyuncs.com/bbs-image/file_45125bd292ef430fbb9e4cdafd76b1f3.png'
+    name: '抖音前端技术团队',
+    link: 'https://douyinfe.com/',
+    avatar: '/src/assets/logo/douyin.ico'
   },
   {
-    title: '腾讯技术工程',
-    desc: '来源：CSDN',
-    url: 'https://blog.csdn.net/Tencent_TEG',
-    logo: 'http://coderutil.oss-cn-beijing.aliyuncs.com/bbs-image/file_5fb68f6c152f4559885015420a822a51.png'
+    name: '淘系前端团队',
+    link: 'https://fed.taobao.org/',
+    avatar: '/src/assets/logo/taoxi.png'
   },
   {
-    title: '美团技术团队',
-    desc: '来源：meituan',
-    url: 'https://tech.meituan.com/',
-    logo: 'http://coderutil.oss-cn-beijing.aliyuncs.com/bbs-image/file_63395250de7a43c8a42223e723b45c25.png'
+    name: '百度Web前端研发部',
+    link: 'https://fex.baidu.com/',
+    avatar: '/src/assets/logo/fex.ico'
   },
   {
-    title: '饿了么前端',
-    desc: '来源：知乎',
-    url: 'https://zhuanlan.zhihu.com/ElemeFE',
-    logo: 'http://coderutil.oss-cn-beijing.aliyuncs.com/bbs-image/file_d2c05dac268c46e989de3d62399886b7.png'
+    name: '有赞技术团队',
+    link: 'https://tech.youzan.com/tag/front-end/',
+    avatar: '/src/assets/logo/youzan.ico'
   },
   {
-    title: 'Facebook',
-    desc: '来源：Facebook',
-    url: 'https://engineering.fb.com/',
-    logo: 'http://coderutil.oss-cn-beijing.aliyuncs.com/bbs-image/file_a5f72c028f114584b302954b036c40d9.png'
+    name: '饿了吗前端',
+    link: 'https://zhuanlan.zhihu.com/ElemeFE',
+    avatar: '/src/assets/logo/elm.jpg'
   }
-];
-
-const studyList = [
+]
+const componentLibraryList = [
   {
-    title: 'GitHub',
-    desc: '世界最大的开源代码共享社区',
-    url: 'https://github.com/',
-    logo: 'https://qiqihao.oss-cn-beijing.aliyuncs.com/static/coderutil/icon/github.svg'
+    name: 'Ant Design',
+    icon: '/src/assets/logo/antd-logo.svg',
+    description: 'antd 是基于 Ant Design 设计体系的 React UI 组件库，主要用于研发企业级中后台产品。',
+    link: 'https://ant-design.antgroup.com/index-cn'
   },
   {
-    title: 'Gitchat',
-    desc: 'IT知识分享平台',
-    url: 'https://gitbook.cn/',
-    logo: 'https://qiqihao.oss-cn-beijing.aliyuncs.com/static/coderutil/icon/gitchat.png'
+    name: 'Material-UI',
+    icon: '/src/assets/logo/material-ui.svg',
+    description:
+      'Material-UI是一组实现了谷歌Material Design设计原则的React组件集合，江湖传言使用Material-UI可以使我们的页面颜色更鲜艳，动画效果更突出。',
+    link: 'https://mui.com/'
   },
   {
-    title: 'Gitee',
-    desc: '中国最大的开源代码共享社区',
-    url: 'https://gitee.com/',
-    logo: 'https://qiqihao.oss-cn-beijing.aliyuncs.com/static/coderutil/icon/gitee.png'
+    name: 'Arco Design',
+    icon: '/src/assets/logo/arco-logo.svg',
+    description: '字节跳动出品的企业级设计系统，组件好看优雅，有React版本和Vue版本。',
+    link: 'https://arco.design/'
   },
   {
-    title: '慕课网',
-    desc: '程序员的梦工厂',
-    url: 'https://www.imooc.com/',
-    logo: 'https://qiqihao.oss-cn-beijing.aliyuncs.com/static/coderutil/icon/imooc.png'
+    name: 'React Vant',
+    icon: '/src/assets/logo/react-vant.svg',
+    description: '有赞前端团队开源的移动端组件库，性能极佳，质量高，覆盖移动端主流场景。',
+    link: 'https://react-vant.3lang.dev/'
   },
   {
-    title: '掘金',
-    desc: '一个帮助开发者成长的社区',
-    url: 'https://juejin.cn/',
-    logo: 'https://qiqihao.oss-cn-beijing.aliyuncs.com/static/coderutil/icon/juejin.png'
+    name: 'Zarm',
+    icon: '/src/assets/logo/zarm.svg',
+    description: 'Zarm 是众安科技基于 React 研发的一款适用于企业级的移动端 UI 组件库，致力于做有温度的组件库。',
+    link: 'https://zarm.design/#/'
   },
   {
-    title: 'CSDN',
-    desc: '中文最大的技术社区',
-    url: 'https://www.csdn.net/',
-    logo: 'https://qiqihao.oss-cn-beijing.aliyuncs.com/static/coderutil/icon/csdn.png'
+    name: 'Semi-UI',
+    icon: '/src/assets/logo/semi-logo.png',
+    description: '由抖音前端与 UED 团队维护，易于定制的现代化设计系统，帮助设计师与开发者打造高质量产品。',
+    link: 'https://semi.design/zh-CN/'
+  },
+  {
+    name: 'NextUI',
+    icon: '/src/assets/logo/next-ui.png',
+    description: '漂亮、快速、现代的 React UI 库。Make beautiful websites regardless of your design experience.',
+    link: 'https://nextui.org/'
+  },
+  {
+    name: 'React Bootstrap',
+    icon: '/src/assets/logo/react-bootstrap.svg',
+    description:
+      'React-Bootstrap 是模仿Bootstrap 风格的React 组件库。Star 数超过1.3万，其简洁的设计风格在社区广受欢迎。',
+    link: 'https://react-bootstrap.netlify.app/'
   }
-];
-
+]
+const projectList = [
+  {
+    name: 'Github',
+    description: '世界最大的开源社区',
+    avatar: '/src/assets/logo/github.svg',
+    link: 'https://github.com/'
+  },
+  {
+    name: 'Arco admin template',
+    description: '一个免费开源的中后台模板',
+    avatar: '/src/assets/logo/react.svg',
+    link: 'https://github.com/hu-snail/arco-admin-template#arco-admin-template'
+  },
+  {
+    name: 'code-roadmap',
+    description: '原创编程学习路线，包括全面的知识点、免费资源、面试题、学习建议、项目，适用于所有学习编程、求职的同学',
+    avatar: '/src/assets/logo/yupi.png',
+    link: 'https://github.com/liyupi/code-roadmap'
+  },
+  {
+    name: 'awesome-react',
+    description: '有关 React 生态系统的精彩内容的集合',
+    avatar: '/src/assets/logo/awesome-react.jpg',
+    link: 'https://github.com/enaqx/awesome-react'
+  },
+  {
+    name: 'outils',
+    description: '前端业务代码工具库',
+    avatar: '/src/assets/logo/outils.jpg',
+    link: 'https://github.com/proYang/outils'
+  },
+  {
+    name: 'linux-tutorial',
+    description: '📚 linux-tutorial 是一个 Linux 教程',
+    avatar: '/src/assets/logo/linux-tutorial.png',
+    link: 'https://github.com/dunwu/linux-tutorial'
+  }
+]
+const communityList = [
+  {
+    avatar: '/src/assets/logo/cainiao.ico',
+    name: '菜鸟教程',
+    description: '学的不仅是技术，更是梦想！',
+    link: 'https://www.runoob.com/'
+  },
+  {
+    avatar: '/src/assets/logo/stackoverflow.svg',
+    name: 'StackOverflow',
+    description: '全球最大的技术社区。',
+    link: 'https://stackoverflow.com/'
+  },
+  {
+    avatar: '/src/assets/logo/juejin.png',
+    name: '掘金',
+    description: '帮助开发者成长的社区。',
+    link: 'https://juejin.cn/'
+  },
+  {
+    avatar: '/src/assets/logo/oschina.ico',
+    name: '开源中国',
+    description: '目前国内最大的开源技术社区。',
+    link: 'https://www.oschina.net/'
+  },
+  {
+    avatar: '/src/assets/logo/sifou.png',
+    name: 'SF思否',
+    description: '中国领先的开发者技术社区。',
+    link: 'https://segmentfault.com/'
+  },
+  {
+    avatar: '/src/assets/logo/csdn.png',
+    name: 'CSDN',
+    description: '精华与糟粕并存。',
+    link: 'https://www.csdn.net/'
+  }
+]
 export default [
   {
-    url: '/api/getResouceList',
+    url: '/api/getResource',
     type: 'get',
     response() {
       return {
         code: 200,
         msg: 'success',
         data: {
-          list, prefix, communityList, teamList, studyList
+          teamList,
+          componentLibraryList,
+          projectList,
+          communityList
         }
-      };
+      }
     }
   }
-];
+]

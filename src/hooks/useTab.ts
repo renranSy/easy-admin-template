@@ -12,7 +12,12 @@ export type Item = {
   key: string
   children?: Item[]
 }
+
 let TAB_LIST: Tab[] = []
+
+const WHITE_LIST: string[] = ['/login']
+
+const firstTab = MenuItems.filter((item) => item.label === '工作台')[0]
 
 const flattenMenu = (menu: Item[]) => {
   const flattenedMenu: Item[] = []
@@ -37,15 +42,15 @@ const getLabel = (pathname: string) => {
 }
 
 export const useTab = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+
   TAB_LIST = flattenMenu(MenuItems).map((item) => {
     return {
       label: item.label,
       pathname: item.key
     }
   })
-
-  const location = useLocation()
-  const navigate = useNavigate()
 
   const [activeTab, setActiveTab] = useState<Tab>({
     pathname: location.pathname,
@@ -54,8 +59,8 @@ export const useTab = () => {
   const [tabList, setTabList] = useState<Tab[]>(
     JSON.parse(cache.get('tabList')) || [
       {
-        pathname: '/',
-        label: getLabel('/')
+        pathname: firstTab.key,
+        label: getLabel(firstTab.key)
       }
     ]
   )
@@ -64,7 +69,13 @@ export const useTab = () => {
   useEffect(() => {
     setActiveTab({ pathname: location.pathname, label: getLabel(location.pathname) })
     addTab({ pathname: location.pathname, label: getLabel(location.pathname) })
-  }, [location.pathname])
+
+    if (tabList.length === 0) {
+      setTabList([{ pathname: firstTab.key, label: getLabel(firstTab.key) }])
+      setActiveTab({ pathname: firstTab.key, label: getLabel(firstTab.key) })
+      navigate(firstTab.key)
+    }
+  }, [location.pathname, tabList])
 
   // 添加标签
   const addTab = (tab: Tab) => {
@@ -82,13 +93,6 @@ export const useTab = () => {
     navigate(tab.pathname)
   }
 
-  useEffect(() => {
-    if (tabList.length === 0) {
-      setTabList([{ pathname: '/', label: getLabel('/') }])
-      setActiveTab({ pathname: '/', label: getLabel('/') })
-      navigate('/')
-    }
-  }, [tabList])
   // 关闭标签
   const closeTab = (tab: Tab) => {
     if (tab.pathname === activeTab.pathname && tabList.length > 1) {

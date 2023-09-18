@@ -1,20 +1,29 @@
 import React, { useState } from 'react'
-import { getData } from '@/api'
+import { getWorkbench } from '@/api'
 import useAsync from '../../hooks/useAsync'
 import { Line, LineConfig } from '@ant-design/plots'
 import { Avatar, Card, Col, Descriptions, DescriptionsProps, List, Row, Timeline } from 'antd'
 import { AccountBookFilled, MessageFilled, ShoppingCartOutlined, UsergroupAddOutlined } from '@ant-design/icons'
+import GeneralInfo = API.GeneralInfo
 
 const Home = () => {
-  const [data, setData] = useState<{ year: string; gdp: string; name: string }[]>([])
+  const [chartData, setChartData] = useState<API.ChartData[]>([])
+  const [updateLog, setUpdateLog] = useState<API.UpdateLog[]>()
+  const [commentList, setCommentList] = useState<API.Comment[]>()
+  const [generalInfo, setGeneralInfo] = useState<GeneralInfo>()
 
+  // 获取工作台数据
   useAsync(async () => {
-    const resp = await getData()
-    setData(resp.data)
+    const resp = await getWorkbench()
+    setChartData(resp.data.chartData)
+    setUpdateLog(resp.data.updateLog)
+    setCommentList(resp.data.commentList)
+    setGeneralInfo(resp.data.generalInfo)
   }, [])
 
+  // 图表配置
   const config: LineConfig = {
-    data,
+    data: chartData,
     autoFit: true,
     xField: 'year',
     yField: 'gdp',
@@ -39,64 +48,27 @@ const Home = () => {
   const infoList = [
     {
       name: '新用户',
-      data: '2,546',
+      data: generalInfo?.newUser,
       icon: <UsergroupAddOutlined style={{ fontSize: '48px', color: '#40c9c6' }} />
     },
     {
       name: '消息',
-      data: '1,354',
+      data: generalInfo?.newMessage,
       icon: <MessageFilled style={{ fontSize: '48px', color: '#36a3f7' }} />
     },
     {
       name: '流水',
-      data: '324,124',
+      data: generalInfo?.account,
       icon: <AccountBookFilled style={{ fontSize: '48px', color: '#f4516c' }} />
     },
     {
       name: '购物',
-      data: '21,513',
+      data: generalInfo?.shop,
       icon: <ShoppingCartOutlined style={{ fontSize: '48px', color: '#34bfa3' }} />
     }
   ]
 
-  const updateLog = [
-    {
-      children: '😥 代码虐我千百遍，我待代码如初恋',
-      color: 'green'
-    },
-    {
-      children: '🧐 这是蓝色的，我要是没猜错的话',
-      color: 'blue'
-    },
-    {
-      children: '🐛 这里有一个虫子',
-      color: 'red'
-    },
-    {
-      children: '🚀 Easy admin template被建立了',
-      color: 'gray'
-    }
-  ]
-
-  const commentList = [
-    {
-      name: '荏苒',
-      description: '我热爱代码✨，但我更爱我的女朋友❤。'
-    },
-    {
-      name: '荏苒',
-      description: '我要赚好多💰，然后养我的女朋友🍊。'
-    },
-    {
-      name: '荏苒',
-      description: '加油💪！加油！！！'
-    },
-    {
-      name: '荏苒',
-      description: '希望以后不要秃头☹。'
-    }
-  ]
-
+  // 自我介绍
   const descriptions: DescriptionsProps['items'] = [
     {
       key: '1',
@@ -124,13 +96,13 @@ const Home = () => {
       key: '4',
       label: '自我介绍',
       children: '渴望成为大牛的大学练习生。',
-      labelStyle: { width: '80px'}
+      labelStyle: { width: '80px' }
     }
   ]
   return (
     <>
       <List
-        grid={{ gutter: 16, xs: 1, sm: 1, md: 2, lg: 2, xl: 4 }}
+        grid={{ gutter: 16, xs: 1, sm: 1, md: 2, lg: 2, xl: 4, xxl: 4 }}
         dataSource={infoList}
         renderItem={(item) => (
           <List.Item>

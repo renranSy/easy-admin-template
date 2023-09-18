@@ -1,5 +1,4 @@
 import React, { createRef, useEffect, useState } from 'react'
-import type { MenuProps } from 'antd'
 import { Avatar, Dropdown, Input, InputRef } from 'antd'
 
 import {
@@ -11,38 +10,11 @@ import {
   SettingOutlined,
   UserOutlined
 } from '@ant-design/icons'
-
-const dropdownItems: MenuProps['items'] = [
-  {
-    key: '1',
-    label: (
-      <>
-        <UserOutlined style={{ fontSize: '14px' }} />
-        <span className="ml-1">个人中心</span>
-      </>
-    )
-  },
-  {
-    key: '2',
-    label: (
-      <>
-        <SettingOutlined style={{ fontSize: '14px' }} />
-        <span className="ml-1">个人设置</span>
-      </>
-    )
-  },
-  {
-    key: '3',
-    label: (
-      <>
-        <LogoutOutlined style={{ fontSize: '14px' }} />
-        <span className="ml-1">退出登录</span>
-      </>
-    )
-  }
-]
+import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
+  const navigate = useNavigate()
+
   const [searchInputWidth, setSearchInputWidth] = useState(0)
   const searchRef = createRef<InputRef>()
   const clickSearch = (e: React.MouseEvent<HTMLSpanElement>) => {
@@ -124,7 +96,43 @@ const Header = () => {
             />
           </div>
 
-          <Dropdown menu={{ items: dropdownItems }} placement="bottom" arrow>
+          <Dropdown
+            menu={{
+              items: [
+                {
+                  key: '1',
+                  label: (
+                    <div>
+                      <UserOutlined style={{ fontSize: '14px' }} />
+                      <span className="ml-1">个人中心</span>
+                    </div>
+                  )
+                },
+                {
+                  key: '2',
+                  label: (
+                    <div>
+                      <SettingOutlined style={{ fontSize: '14px' }} />
+                      <span className="ml-1">个人设置</span>
+                    </div>
+                  )
+                },
+                {
+                  key: '3',
+                  label: (
+                    <div
+                      onClick={() => {
+                        navigate('/login')
+                      }}>
+                      <LogoutOutlined style={{ fontSize: '14px' }} />
+                      <span className="ml-1">退出登录</span>
+                    </div>
+                  )
+                }
+              ]
+            }}
+            placement="bottom"
+            arrow>
             <div
               className="flex items-center px-2 h-full  cursor-pointer"
               style={{ transition: 'all 0.2s ease-in-out' }}>
