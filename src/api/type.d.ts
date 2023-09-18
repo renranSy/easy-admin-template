@@ -5,53 +5,72 @@ declare namespace API {
     message: string
   }
 
-  type GetBookingDateResult = {
-    current: number
-    pages: number
-    total: number
-    size: number
-    records: BookingDate[]
+  type LoginParam = {
+    username: string
+    password: string
   }
 
-  type BookingDate = {
-    id: number
-    bookingDate: string
-    limitNumber: number
-    bookingNumber: number
-    // 预约类型：0、常规体检 1、B超/CT
-    bookingType: number
-  }
-
-  type BookingRecord = {
+  type ChartData = {
+    gdp: number
+    year: string
     name: string
-    idCard: string
-    phone: string
-    bookingDate: string
-    bookingType: string
   }
 
-  type GetRecordParams = {
-    name?: string
-    bookingDate: string
-    bookingType?: string
-    pageNum: number
-    pageSize: number
+  type UpdateLog = {
+    children: string
+    color: string
   }
 
-  type GetRecordResult = {
-    current: number
-    pages: number
-    total: number
-    size: number
-    records: BookingRecord[]
+  type Comment = {
+    name: string
+    description: string
   }
 
-  type Notice = {
-    id: number
-    type: number
-    text: string
+  type GeneralInfo = {
+    newUser: string
+    newMessage: string
+    account: string
+    shop: string
+  }
+
+  type WorkBenchData = {
+    chartData: ChartData[]
+    updateLog: UpdateLog[]
+    commentList: Comment[]
+    generalInfo: GeneralInfo
+  }
+
+  type Team = {
+    name: string
     link: string
-    imgUrl: string
-    createTime: string
+    avatar: string
+  }
+
+  type ComponentLibrary = {
+    name: string
+    icon: string
+    description: string
+    link: string
+  }
+
+  type Project = {
+    name: string
+    description: string
+    avatar: string
+    link: string
+  }
+
+  type Community = {
+    avatar: string
+    name: string
+    description: string
+    link: string
+  }
+
+  type Resource = {
+    teamList: Team[]
+    componentLibraryList: ComponentLibrary[]
+    projectList: Project[]
+    communityList: Community[]
   }
 }

@@ -23,7 +23,6 @@ export const request = <T = any>(url: string, config: AxiosRequestConfig): Promi
         resolve(response.data)
       })
       .catch((error: AxiosError) => {
-        console.log('网络错误')
         reject(error)
       })
   })

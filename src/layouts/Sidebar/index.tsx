@@ -4,33 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import Sider from 'antd/es/layout/Sider'
 
-// type MenuItem = Required<MenuProps>['items'][number]
-
-// const getItem = (
-//   label: React.ReactNode,
-//   key?: React.Key | null,
-//   icon?: React.ReactNode,
-//   children?: MenuItem[]
-// ): MenuItem => {
-//   return {
-//     key,
-//     icon,
-//     children,
-//     label
-//   } as MenuItem
-// }
-
-// export const MenuItems = [
-//   getItem('主页', '/', <HomeOutlined />),
-//   getItem('用户', '/user', <UserOutlined />),
-//   getItem('系统信息', '/system/info', <AppstoreOutlined />),
-//   getItem('多级菜单', null, <MenuOutlined />, [
-//     getItem('一级菜单', '/one'),
-//     getItem('二级菜单', null, null, [getItem('页面一', '/two/one'), getItem('页面二', '/two/two')])
-//   ])
-// ]
 export const MenuItems = [
-  { label: '主页', key: '/', icon: <DashboardOutlined style={{ fontSize: '18px' }} /> },
+  { label: '工作台', key: '/', icon: <DashboardOutlined style={{ fontSize: '18px' }} /> },
   { label: '用户', key: '/user', icon: <UserOutlined style={{ fontSize: '18px' }} /> },
   { label: '资源推荐', key: '/resource', icon: <RocketOutlined style={{ fontSize: '18px' }} /> },
   { label: '系统信息', key: '/info', icon: <AppstoreOutlined style={{ fontSize: '18px' }} /> },
