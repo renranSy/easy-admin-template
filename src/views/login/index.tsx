@@ -1,20 +1,24 @@
-import React, { createRef } from 'react'
+import React, { createRef, useState } from 'react'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { App, Button, Input, InputRef } from 'antd'
 import { useNavigate } from 'react-router-dom'
-import { login } from '@/api'
+import { getUserInfo, login } from '@/api'
 import cache from '@/utils/cache'
+import { useDispatch } from 'react-redux'
+import { userLogin } from '@/store/user'
+import useAsync from '@/hooks/useAsync'
 
 const Login = () => {
   const { message } = App.useApp()
 
+  const dispatch = useDispatch()
+
   const usernameRef = createRef<InputRef>()
   const passwordRef = createRef<InputRef>()
+  const [loading, setLoading] = useState<boolean>(false)
 
   const navigate = useNavigate()
   const handleLogin = async () => {
-    console.log(usernameRef.current!.input!.value)
-    console.log(passwordRef.current!.input!.value)
     const username = usernameRef.current!.input!.value
     const password = passwordRef.current!.input!.value
 
@@ -28,18 +32,30 @@ const Login = () => {
       return
     }
 
+    setLoading(true)
     const resp = await login({
       username,
       password
     })
+    setLoading(false)
     if (resp.code === 200) {
       message.success('登录成功')
       cache.set('token', resp.data.token)
+      dispatch(userLogin(resp.data.userInfo))
       navigate('/')
     } else {
       message.error(resp.message)
     }
   }
+
+  useAsync(async () => {
+    const resp = await getUserInfo()
+    if (resp.code == 200) {
+      dispatch(userLogin(resp.data))
+      navigate('/')
+      message.warning('请勿重复登录！')
+    }
+  })
 
   return (
     <div
@@ -91,9 +107,24 @@ const Login = () => {
               <Input ref={usernameRef} placeholder="用户名为：admin" prefix={<UserOutlined />} />
             </div>
             <div className="mb-2 w-full">
-              <Input ref={passwordRef} placeholder="密码为：admin" prefix={<LockOutlined />} />
+              <Input
+                ref={passwordRef}
+                placeholder="密码为：admin"
+                prefix={<LockOutlined />}
+                onKeyDown={async (event) => {
+                  if (event.key === 'Enter') {
+                    await handleLogin()
+                  }
+                }}
+              />
             </div>
-            <Button onClick={() => handleLogin()} className="mt-4" type="primary" block>
+            <Button
+              loading={loading}
+              disabled={loading}
+              onClick={() => handleLogin()}
+              className="mt-4"
+              type="primary"
+              block>
               登录
             </Button>
           </div>

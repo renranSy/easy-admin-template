@@ -1,5 +1,5 @@
 import React, { createRef, useEffect, useState } from 'react'
-import { Avatar, Dropdown, Input, InputRef } from 'antd'
+import { Avatar, Dropdown, Input, InputRef, message } from 'antd'
 
 import {
   CaretDownFilled,
@@ -11,9 +11,17 @@ import {
   UserOutlined
 } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '@/store'
+import { getUserInfo } from '@/api'
+import useAsync from '@/hooks/useAsync'
+import { userLogin } from '@/store/user'
+import cache from '@/utils/cache';
 
 const Header = () => {
   const navigate = useNavigate()
+  const userState = useSelector((state: RootState) => state.user)
+  const dispatch = useDispatch()
 
   const [searchInputWidth, setSearchInputWidth] = useState(0)
   const searchRef = createRef<InputRef>()
@@ -35,6 +43,17 @@ const Header = () => {
       document.body.removeEventListener('click', blurSearch)
     }
   }, [])
+
+  // 获取管理员信息
+  useAsync(async () => {
+    const resp = await getUserInfo()
+    if (resp.code === 200) {
+      dispatch(userLogin(resp.data))
+    } else {
+      navigate('/login')
+      message.warning(resp.message)
+    }
+  })
 
   return (
     <>
@@ -122,6 +141,7 @@ const Header = () => {
                   label: (
                     <div
                       onClick={() => {
+                        cache.remove('token')
                         navigate('/login')
                       }}>
                       <LogoutOutlined style={{ fontSize: '14px' }} />
@@ -137,13 +157,13 @@ const Header = () => {
               className="flex items-center px-2 h-full  cursor-pointer"
               style={{ transition: 'all 0.2s ease-in-out' }}>
               <Avatar
-                src="/src/assets/avatar.gif"
+                src={userState.avatar}
                 style={{
                   width: '40px',
                   height: '40px'
                 }}
               />
-              <span className="ms-1">荏苒</span>
+              <span className="ms-1">{userState.username}</span>
               <CaretDownFilled />
             </div>
           </Dropdown>
