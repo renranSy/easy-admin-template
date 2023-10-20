@@ -32,5 +32,32 @@ export default [
         message: '登陆成功'
       }
     }
+  },
+  {
+    url: '/api/admin/get',
+    type: 'get',
+    response(config) {
+      console.log(config)
+      const { authorization } = config.headers
+      if (
+        authorization !==
+        'eyJ0eXAiOiJKV1QiLCJhAbDciJIUzI1NiJ9.eyJuYmYiOjE2OTU3NDUYYDSsImV4cCI6MTY5NTc0NTc4NiwiaWF0IjoxNjk1NzQ1Nzg2LCJ1c2VybmFtZSI6IjIxMTExMjEyMjAifQ.lJI_CabcpDDvr8b_LbitKUkF7b8UHGknTvifx1RcDUC'
+      ) {
+        return {
+          code: 401,
+          data: null,
+          message: '登录过期，请重新登录！'
+        }
+      }
+      return {
+        code: 200,
+        data: {
+          username: '荏苒',
+          avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80',
+          role: 'admin'
+        },
+        message: '获取用户信息成功'
+      }
+    }
   }
 ]
