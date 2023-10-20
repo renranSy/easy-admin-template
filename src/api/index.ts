@@ -1,10 +1,17 @@
 import { request } from '@/utils/request/axios'
 
 /** 登录 */
-export const login = (data: { username: string; password: string }) => {
-  return request<{ token: string }>('/admin/login', {
+export const login = (data: API.LoginParam) => {
+  return request<API.LoginResponse>('/admin/login', {
     method: 'post',
     data
+  })
+}
+
+/** 获取管理员信息 */
+export const getUserInfo = () => {
+  return request('/admin/get', {
+    method: 'get'
   })
 }
 

@@ -10,6 +10,15 @@ declare namespace API {
     password: string
   }
 
+  type LoginResponse = {
+    token: string
+    userInfo: {
+      username: string
+      avatar: string
+      role: string
+    }
+  }
+
   type ChartData = {
     gdp: number
     year: string
