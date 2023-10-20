@@ -1,5 +1,12 @@
 import { Menu, MenuProps } from 'antd'
-import { AppstoreOutlined, DashboardOutlined, MenuOutlined, RocketOutlined, UserOutlined } from '@ant-design/icons'
+import {
+  AppstoreOutlined,
+  BugOutlined,
+  DashboardOutlined,
+  MenuOutlined,
+  RocketOutlined,
+  UserOutlined
+} from '@ant-design/icons'
 import { useLocation, useNavigate } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import Sider from 'antd/es/layout/Sider'
@@ -25,6 +32,21 @@ export const MenuItems = [
           { label: '页面一', key: '/two/one' },
           { label: '页面二', key: '/two/two' }
         ]
+      }
+    ]
+  },
+  {
+    label: '错误页面',
+    key: '/error',
+    icon: <BugOutlined style={{ fontSize: '18px' }} />,
+    children: [
+      {
+        label: '404',
+        key: '/404'
+      },
+      {
+        label: '403',
+        key: '/403'
       }
     ]
   }
