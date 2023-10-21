@@ -3,7 +3,7 @@ import { Button, Result } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 
-const Error500 = () => {
+const Error403 = () => {
   const navigate = useNavigate()
   return (
     <>
@@ -21,4 +21,4 @@ const Error500 = () => {
   )
 }
 
-export default Error500
+export default Error403
