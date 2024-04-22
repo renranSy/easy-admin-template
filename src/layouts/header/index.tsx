@@ -66,7 +66,7 @@ const Header = () => {
           zIndex: '999'
         }}>
         <div className="flex items-center">
-          <img style={{ width: '36px', height: '36px' }} src="/logo.svg" alt="" />
+          <img style={{ width: '36px', height: '36px' }} src="/src/assets/logo.svg" alt="" />
           <div className="font-bold ml-3" style={{ fontSize: 20 }}>
             Easy Admin
           </div>

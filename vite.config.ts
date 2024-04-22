@@ -9,6 +9,7 @@ import * as path from 'path'
 const isDev = process.env.NODE_ENV === 'development'
 
 export default defineConfig({
+  base: '/easy-admin-template',
   plugins: [
     react(),
     UnoCSS(),

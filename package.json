@@ -13,7 +13,7 @@
     "@ant-design/plots": "^1.2.5",
     "@reduxjs/toolkit": "^1.9.7",
     "antd": "^5.9.0",
-    "axios": "^1.5.0",
+    "axios": "1.6.8",
     "i": "^0.3.7",
     "lodash": "^4.17.21",
     "mockjs": "^1.1.0",

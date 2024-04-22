@@ -15,45 +15,45 @@ const data = [
   },
   {
     path: '/comp',
-    title: '组件库',
+    name: '组件库',
     children: [
       {
         path: 'btn',
-        title: '按钮组件'
+        name: '按钮组件'
       },
       {
         path: 'form',
-        title: '表单组件'
+        name: '表单组件'
       },
       {
         path: 'locale',
-        title: '国际化'
+        name: '国际化'
       },
       {
         path: 'echarts',
-        title: '图表组件'
+        name: '图表组件'
       }
     ]
   },
   {
     path: '/multi',
-    title: '多级菜单',
+    name: '多级菜单',
     children: [
       {
         path: 'one',
-        title: '一级菜单'
+        name: '一级菜单'
       },
       {
         path: 'two',
-        title: '二级菜单',
+        name: '二级菜单',
         children: [
           {
             path: 'page-one',
-            title: '2-1菜单'
+            name: '2-1菜单'
           },
           {
             path: 'page-two',
-            title: '2-2菜单'
+            name: '2-2菜单'
           }
         ]
       }
@@ -61,15 +61,15 @@ const data = [
   },
   {
     path: '/error',
-    title: '错误页面',
+    name: '错误页面',
     children: [
       {
         path: '404',
-        title: '404页面'
+        name: '404页面'
       },
       {
         path: '500',
-        title: '500页面'
+        name: '500页面'
       }
     ]
   }
