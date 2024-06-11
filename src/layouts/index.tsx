@@ -14,7 +14,7 @@ const Layouts = () => {
         <EasySidebar />
         <Content>
           <EasyNavbar />
-          <Content style={{ height: 'calc(100vh - 56px - 40px)', overflowY: 'scroll' }} className="px-4 pt-4">
+          <Content style={{ height: 'calc(100vh - 56px - 58px)', overflowY: 'scroll' }} className="px-4 pt-4">
             <Outlet />
           </Content>
         </Content>

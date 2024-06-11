@@ -16,7 +16,7 @@ import { RootState } from '@/store'
 import { getUserInfo } from '@/api'
 import useAsync from '@/hooks/useAsync'
 import { userLogin } from '@/store/user'
-import cache from '@/utils/cache';
+import cache from '@/utils/cache'
 
 const Header = () => {
   const navigate = useNavigate()
