@@ -3,6 +3,8 @@ import './index.less'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import { App as AntdApp, ConfigProvider } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
+import { RootState } from '@/store'
+import { useSelector } from 'react-redux'
 
 const NLoading = lazy(() => import('@/components/NLoading'))
 const Layouts = lazy(() => import('@/layouts'))
@@ -21,9 +23,11 @@ const Error403 = lazy(() => import('@/views/error/403'))
 const load = (children: JSX.Element) => <Suspense fallback={<NLoading />}>{children}</Suspense>
 
 function App() {
+  const themeState = useSelector((state: RootState) => state.theme)
+
   return (
     <HashRouter>
-      <ConfigProvider locale={zhCN}>
+      <ConfigProvider locale={zhCN} theme={{ token: { colorPrimary: themeState.primaryColor } }}>
         <AntdApp>
           <Routes>
             <Route path="/login" element={load(<Login />)} />
