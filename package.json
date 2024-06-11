@@ -13,6 +13,7 @@
     "@ant-design/plots": "^1.2.5",
     "@formkit/auto-animate": "^0.8.2",
     "@reduxjs/toolkit": "^1.9.7",
+    "@tabler/icons-react": "^3.5.0",
     "antd": "^5.9.0",
     "axios": "1.6.8",
     "i": "^0.3.7",
