@@ -1,4 +1,4 @@
-<img height="80px" src="https://github.com/renranSy/easy-admin-template/blob/main/public/logo.svg" alt="Logo of the project" align="right">
+<img height="80px" src="https://github.com/renranSy/easy-admin-template/blob/main/src/assets/logo.svg" alt="Logo of the project" align="right">
 
 # Easy admin template  [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
 
