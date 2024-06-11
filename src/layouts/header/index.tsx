@@ -1,15 +1,7 @@
 import React, { createRef, useEffect, useState } from 'react'
 import { Avatar, Dropdown, Input, InputRef, message } from 'antd'
 
-import {
-  CaretDownFilled,
-  FullscreenOutlined,
-  LogoutOutlined,
-  ReloadOutlined,
-  SearchOutlined,
-  SettingOutlined,
-  UserOutlined
-} from '@ant-design/icons'
+import { CaretDownFilled, LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/store'
@@ -17,15 +9,18 @@ import { getUserInfo } from '@/api'
 import useAsync from '@/hooks/useAsync'
 import { userLogin } from '@/store/user'
 import cache from '@/utils/cache'
+import { IconArrowsMaximize, IconReload, IconSearch, IconShirt } from '@tabler/icons-react'
+import ThemeDrawer from '@/components/ThemeDrawer'
 
 const Header = () => {
   const navigate = useNavigate()
   const userState = useSelector((state: RootState) => state.user)
+  const [showTheme, setShowTheme] = useState(false)
   const dispatch = useDispatch()
 
   const [searchInputWidth, setSearchInputWidth] = useState(0)
   const searchRef = createRef<InputRef>()
-  const clickSearch = (e: React.MouseEvent<HTMLSpanElement>) => {
+  const clickSearch = (e: React.MouseEvent<SVGElement>) => {
     e.stopPropagation()
     setSearchInputWidth(240)
     console.log(searchRef)
@@ -74,9 +69,9 @@ const Header = () => {
         <div className="flex items-center h-full">
           <div className="flex items-center mr-2 h-full hover:bg-gray-1" style={{ transition: 'all 0.2s ease-in-out' }}>
             <div className="h-full px-2 cursor-pointer hover:bg-gray-1" style={{ transition: 'all 0.2s ease-in-out' }}>
-              <SearchOutlined
+              <IconSearch
                 onClick={(e) => clickSearch(e)}
-                className="h-full active:text-blue-4"
+                className="h-full active:text-blue-4 text-gray-5"
                 style={{ fontSize: '20px' }}
               />
             </div>
@@ -95,22 +90,33 @@ const Header = () => {
           <div
             className="flex items-center mr-2 px-2 h-full  cursor-pointer hover:bg-gray-1"
             style={{ transition: 'all 0.2s ease-in-out' }}>
-            <FullscreenOutlined
+            <IconArrowsMaximize
               onClick={async () => {
                 await document.documentElement.requestFullscreen()
               }}
-              className="active:text-blue-4"
+              className="active:text-blue-4 text-gray-5"
               style={{ fontSize: '20px' }}
             />
           </div>
           <div
             className="flex items-center mr-2 px-2 h-full  cursor-pointer hover:bg-gray-1"
             style={{ transition: 'all 0.2s ease-in-out' }}>
-            <ReloadOutlined
+            <IconReload
               onClick={() => {
                 location.reload()
               }}
-              className="active:text-blue-4"
+              className="active:text-blue-4 text-gray-5"
+              style={{ fontSize: '18px' }}
+            />
+          </div>
+          <div
+            className="flex items-center mr-2 px-2 h-full  cursor-pointer hover:bg-gray-1"
+            style={{ transition: 'all 0.2s ease-in-out' }}>
+            <IconShirt
+              onClick={() => {
+                setShowTheme(true)
+              }}
+              className="active:text-blue-4 text-gray-5"
               style={{ fontSize: '18px' }}
             />
           </div>
@@ -169,6 +175,8 @@ const Header = () => {
           </Dropdown>
         </div>
       </div>
+
+      <ThemeDrawer open={showTheme} setOpen={setShowTheme} />
     </>
   )
 }
