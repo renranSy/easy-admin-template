@@ -26,14 +26,113 @@ const ThemeDrawer: React.FC<Props> = ({ open, setOpen }) => {
     <>
       <Drawer open={open} onClose={() => setOpen(false)} bodyStyle={{ padding: '0 16px' }}>
         <Divider>主题</Divider>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-2">
           <span className="font-bold">主题</span>
           <ColorPicker
             presets={presets}
             defaultValue={themeState.primaryColor}
             onChange={(_, hex) => {
-              console.log(hex)
-              dispatch(setTheme({ primaryColor: hex }))
+              dispatch(setTheme({ ...themeState, primaryColor: hex }))
+            }}
+          />
+        </div>
+        <div className="flex items-center justify-between mb-2">
+          <span className="font-bold">成功</span>
+          <ColorPicker
+            presets={presets}
+            defaultValue={themeState.successColor}
+            onChange={(_, hex) => {
+              dispatch(setTheme({ ...themeState, successColor: hex }))
+            }}
+          />
+        </div>
+        <div className="flex items-center justify-between mb-2">
+          <span className="font-bold">错误</span>
+          <ColorPicker
+            presets={presets}
+            defaultValue={themeState.errorColor}
+            onChange={(_, hex) => {
+              dispatch(setTheme({ ...themeState, errorColor: hex }))
+            }}
+          />
+        </div>
+        <div className="flex items-center justify-between mb-2">
+          <span className="font-bold">警告</span>
+          <ColorPicker
+            presets={presets}
+            defaultValue={themeState.warningColor}
+            onChange={(_, hex) => {
+              dispatch(setTheme({ ...themeState, warningColor: hex }))
+            }}
+          />
+        </div>
+        <div className="flex items-center justify-between mb-2">
+          <span className="font-bold">标题</span>
+          <ColorPicker
+            presets={presets}
+            defaultValue={themeState.titleColor}
+            onChange={(_, hex) => {
+              dispatch(setTheme({ ...themeState, titleColor: hex }))
+            }}
+          />
+        </div>
+        <div className="flex items-center justify-between mb-2">
+          <span className="font-bold">副标题</span>
+          <ColorPicker
+            presets={presets}
+            defaultValue={themeState.subtitleColor}
+            onChange={(_, hex) => {
+              dispatch(setTheme({ ...themeState, subtitleColor: hex }))
+            }}
+          />
+        </div>
+        <div className="flex items-center justify-between mb-2">
+          <span className="font-bold">次标题</span>
+          <ColorPicker
+            presets={presets}
+            defaultValue={themeState.secondaryColor}
+            onChange={(_, hex) => {
+              dispatch(setTheme({ ...themeState, secondaryColor: hex }))
+            }}
+          />
+        </div>
+        <div className="flex items-center justify-between mb-2">
+          <span className="font-bold">占位符</span>
+          <ColorPicker
+            presets={presets}
+            defaultValue={themeState.placeholderColor}
+            onChange={(_, hex) => {
+              dispatch(setTheme({ ...themeState, placeholderColor: hex }))
+            }}
+          />
+        </div>
+        <div className="flex items-center justify-between mb-2">
+          <span className="font-bold">深分隔符</span>
+          <ColorPicker
+            presets={presets}
+            defaultValue={themeState.dividerDarkColor}
+            onChange={(_, hex) => {
+              dispatch(setTheme({ ...themeState, dividerDarkColor: hex }))
+            }}
+          />
+        </div>
+        <div className="flex items-center justify-between mb-2">
+          <span className="font-bold">浅分隔符</span>
+          <ColorPicker
+            presets={presets}
+            defaultValue={themeState.dividerLightColor}
+            onChange={(_, hex) => {
+              dispatch(setTheme({ ...themeState, dividerLightColor: hex }))
+            }}
+          />
+        </div>
+        <div className="flex items-center justify-between mb-2">
+          <span className="font-bold">背景</span>
+          <ColorPicker
+            presets={presets}
+            defaultValue={themeState.backgroundColor}
+            onChange={(_, hex) => {
+              dispatch(setTheme({ ...themeState, backgroundColor: hex }))
             }}
           />
         </div>

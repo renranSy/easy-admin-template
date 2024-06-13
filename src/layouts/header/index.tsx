@@ -148,6 +148,7 @@ const Header = () => {
                     <div
                       onClick={() => {
                         cache.remove('token')
+                        message.success('退出登录成功')
                         navigate('/login')
                       }}>
                       <LogoutOutlined style={{ fontSize: '14px' }} />

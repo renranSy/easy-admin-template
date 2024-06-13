@@ -42,5 +42,13 @@ export default defineConfig({
     //     rewrite: (path) => path.replace(/^\/dev-api/, ""),
     //   },
     // },
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnable: true,
+        additionalData: `@import "./src/assets/style/var.less";`
+      }
+    }
   }
 })

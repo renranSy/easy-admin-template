@@ -12,7 +12,7 @@ const Layouts = () => {
       <EasyHeader />
       <Layout>
         <EasySidebar />
-        <Content>
+        <Content style={{ backgroundColor: 'var(--background-color)' }}>
           <EasyNavbar />
           <Content style={{ height: 'calc(100vh - 56px - 58px)', overflowY: 'scroll' }} className="px-4 pt-4">
             <Outlet />

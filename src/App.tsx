@@ -1,10 +1,11 @@
-import React, { JSX, lazy, Suspense } from 'react'
+import React, { JSX, lazy, Suspense, useEffect } from 'react'
 import './index.less'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import { App as AntdApp, ConfigProvider } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
 import { RootState } from '@/store'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { initTheme } from '@/store/theme'
 
 const NLoading = lazy(() => import('@/components/NLoading'))
 const Layouts = lazy(() => import('@/layouts'))
@@ -24,10 +25,20 @@ const load = (children: JSX.Element) => <Suspense fallback={<NLoading />}>{child
 
 function App() {
   const themeState = useSelector((state: RootState) => state.theme)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(initTheme())
+  }, [])
 
   return (
     <HashRouter>
-      <ConfigProvider locale={zhCN} theme={{ token: { colorPrimary: themeState.primaryColor } }}>
+      <ConfigProvider
+        locale={zhCN}
+        theme={{
+          token: {
+            colorPrimary: themeState.primaryColor
+          }
+        }}>
         <AntdApp>
           <Routes>
             <Route path="/login" element={load(<Login />)} />

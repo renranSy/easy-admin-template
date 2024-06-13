@@ -26,7 +26,7 @@ export const Navbar = () => {
             key={t.pathname}
             className={
               'tab cursor-pointer flex items-center ' +
-              (t.pathname === activeTab.pathname ? 'bg-blue-1 text-blue-5 active-tab-border' : '')
+              (t.pathname === activeTab.pathname ? 'active-tab' : '')
             }>
             <span onClick={() => clickTab(t)}>{t.label}</span>
             <Close tab={t} />

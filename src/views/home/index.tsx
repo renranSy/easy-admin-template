@@ -110,7 +110,7 @@ const Home = () => {
               <div className="flex w-full justify-around items-center">
                 <div>{item.icon}</div>
                 <div>
-                  <div className="font-bold text-gray-4" style={{ fontSize: '16px' }}>
+                  <div className="font-bold" style={{ fontSize: '16px', color: 'var(--secondary-color)' }}>
                     {item.name}
                   </div>
                   <div className="font-bold text-gray-6" style={{ fontSize: '24px' }}>
