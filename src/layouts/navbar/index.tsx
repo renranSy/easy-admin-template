@@ -1,9 +1,9 @@
 import React from 'react'
 import './index.less'
-import { CloseOutlined } from '@ant-design/icons'
 import { Tab, useTab } from '@/hooks/useTab'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { Space } from 'antd'
+import { IconX } from '@tabler/icons-react'
 
 export const Navbar = () => {
   const { activeTab, tabList, clickTab, closeTab } = useTab()
@@ -14,7 +14,11 @@ export const Navbar = () => {
       return <span className="pr-2"></span>
     }
     return (
-      <CloseOutlined onClick={() => closeTab(props.tab)} className="ml-1 cursor-pointer" style={{ fontSize: '10px' }} />
+      <IconX
+        onClick={() => closeTab(props.tab)}
+        className="ml-1 cursor-pointer hover:color-gray-7 color-[#707987] transition-all"
+        size="14"
+      />
     )
   }
 
@@ -25,8 +29,7 @@ export const Navbar = () => {
           <div
             key={t.pathname}
             className={
-              'tab cursor-pointer flex items-center ' +
-              (t.pathname === activeTab.pathname ? 'active-tab' : '')
+              'tab cursor-pointer flex items-center ' + (t.pathname === activeTab.pathname ? 'active-tab' : '')
             }>
             <span onClick={() => clickTab(t)}>{t.label}</span>
             <Close tab={t} />
