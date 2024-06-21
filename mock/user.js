@@ -37,7 +37,6 @@ export default [
     url: '/api/admin/get',
     type: 'get',
     response(config) {
-      console.log(config)
       const { authorization } = config.headers
       if (
         authorization !==

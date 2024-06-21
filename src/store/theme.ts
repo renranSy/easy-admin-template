@@ -15,7 +15,8 @@ export type ThemeState = {
   backgroundColor: string
 }
 
-export const ThemeStyleMap = new Map<string, string>([
+// 定义颜色与 CSS 变量映射关系
+export const ThemeStyleMap = new Map<keyof ThemeState, string>([
   ['primaryColor', '--primary-color'],
   ['successColor', '--success-color'],
   ['errorColor', '--error-color'],
@@ -29,7 +30,7 @@ export const ThemeStyleMap = new Map<string, string>([
   ['backgroundColor', '--background-color']
 ])
 
-const initialState = {
+const initialState: ThemeState = {
   primaryColor: '#4787FF',
   successColor: '#14CB3C',
   errorColor: '#F55A47',
@@ -41,36 +42,30 @@ const initialState = {
   dividerDarkColor: '#CCD3DB',
   dividerLightColor: '#E3E9F0',
   backgroundColor: '#F5F7FA'
-} as ThemeState
+}
+
+// 将主题应用到根元素的函数
+const applyThemeToRoot = (theme: ThemeState) => {
+  const root = document.querySelector<HTMLElement>(':root')
+  if (!root) {
+    return
+  }
+  ThemeStyleMap.forEach((cssVar, key) => {
+    root.style.setProperty(cssVar, theme[key])
+  })
+  root.style.setProperty('--selection-color', hexToRgba(theme.primaryColor, 0.2))
+}
 
 export const themeSlice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
     setTheme(state, action: PayloadAction<ThemeState>) {
-      for (const key in state) {
-        state[key as keyof typeof state] = action.payload[key as keyof typeof state]
-      }
-
-      const root = document.querySelector<HTMLElement>(':root')
-      if (!root) {
-        return
-      }
-      for (const key in state) {
-        root.style.setProperty(ThemeStyleMap.get(key) || '', state[key as keyof ThemeState])
-      }
-      root.style.setProperty('--selection-color', hexToRgba(state.primaryColor, 0.2))
+      Object.assign(state, action.payload)
+      applyThemeToRoot(action.payload)
     },
     initTheme(state) {
-      const root = document.querySelector<HTMLElement>(':root')
-      console.log(root)
-      if (!root) {
-        return
-      }
-      for (const key in state) {
-        root.style.setProperty(ThemeStyleMap.get(key) || '', state[key as keyof ThemeState])
-      }
-      root.style.setProperty('--selection-color', hexToRgba(state.primaryColor, 0.2))
+      applyThemeToRoot(state)
     }
   }
 })
