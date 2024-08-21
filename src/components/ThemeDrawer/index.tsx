@@ -31,8 +31,8 @@ const ThemeDrawer: React.FC<Props> = ({ open, setOpen }) => {
           <ColorPicker
             presets={presets}
             defaultValue={themeState.primaryColor}
-            onChange={(_, hex) => {
-              dispatch(setTheme({ ...themeState, primaryColor: hex }))
+            onChange={(value) => {
+              dispatch(setTheme({ ...themeState, primaryColor: value.toHexString() }))
             }}
           />
         </div>
@@ -41,8 +41,8 @@ const ThemeDrawer: React.FC<Props> = ({ open, setOpen }) => {
           <ColorPicker
             presets={presets}
             defaultValue={themeState.successColor}
-            onChange={(_, hex) => {
-              dispatch(setTheme({ ...themeState, successColor: hex }))
+            onChange={(value) => {
+              dispatch(setTheme({ ...themeState, successColor: value.toHexString() }))
             }}
           />
         </div>
@@ -51,8 +51,8 @@ const ThemeDrawer: React.FC<Props> = ({ open, setOpen }) => {
           <ColorPicker
             presets={presets}
             defaultValue={themeState.errorColor}
-            onChange={(_, hex) => {
-              dispatch(setTheme({ ...themeState, errorColor: hex }))
+            onChange={(value) => {
+              dispatch(setTheme({ ...themeState, errorColor: value.toHexString() }))
             }}
           />
         </div>
@@ -61,8 +61,8 @@ const ThemeDrawer: React.FC<Props> = ({ open, setOpen }) => {
           <ColorPicker
             presets={presets}
             defaultValue={themeState.warningColor}
-            onChange={(_, hex) => {
-              dispatch(setTheme({ ...themeState, warningColor: hex }))
+            onChange={(value) => {
+              dispatch(setTheme({ ...themeState, warningColor: value.toHexString() }))
             }}
           />
         </div>
@@ -71,8 +71,8 @@ const ThemeDrawer: React.FC<Props> = ({ open, setOpen }) => {
           <ColorPicker
             presets={presets}
             defaultValue={themeState.titleColor}
-            onChange={(_, hex) => {
-              dispatch(setTheme({ ...themeState, titleColor: hex }))
+            onChange={(value) => {
+              dispatch(setTheme({ ...themeState, titleColor: value.toHexString() }))
             }}
           />
         </div>
@@ -81,8 +81,8 @@ const ThemeDrawer: React.FC<Props> = ({ open, setOpen }) => {
           <ColorPicker
             presets={presets}
             defaultValue={themeState.subtitleColor}
-            onChange={(_, hex) => {
-              dispatch(setTheme({ ...themeState, subtitleColor: hex }))
+            onChange={(value) => {
+              dispatch(setTheme({ ...themeState, subtitleColor: value.toHexString() }))
             }}
           />
         </div>
@@ -91,8 +91,8 @@ const ThemeDrawer: React.FC<Props> = ({ open, setOpen }) => {
           <ColorPicker
             presets={presets}
             defaultValue={themeState.secondaryColor}
-            onChange={(_, hex) => {
-              dispatch(setTheme({ ...themeState, secondaryColor: hex }))
+            onChange={(value) => {
+              dispatch(setTheme({ ...themeState, secondaryColor: value.toHexString() }))
             }}
           />
         </div>
@@ -101,8 +101,8 @@ const ThemeDrawer: React.FC<Props> = ({ open, setOpen }) => {
           <ColorPicker
             presets={presets}
             defaultValue={themeState.placeholderColor}
-            onChange={(_, hex) => {
-              dispatch(setTheme({ ...themeState, placeholderColor: hex }))
+            onChange={(value) => {
+              dispatch(setTheme({ ...themeState, placeholderColor: value.toHexString() }))
             }}
           />
         </div>
@@ -111,8 +111,8 @@ const ThemeDrawer: React.FC<Props> = ({ open, setOpen }) => {
           <ColorPicker
             presets={presets}
             defaultValue={themeState.dividerDarkColor}
-            onChange={(_, hex) => {
-              dispatch(setTheme({ ...themeState, dividerDarkColor: hex }))
+            onChange={(value) => {
+              dispatch(setTheme({ ...themeState, dividerDarkColor: value.toHexString() }))
             }}
           />
         </div>
@@ -121,8 +121,8 @@ const ThemeDrawer: React.FC<Props> = ({ open, setOpen }) => {
           <ColorPicker
             presets={presets}
             defaultValue={themeState.dividerLightColor}
-            onChange={(_, hex) => {
-              dispatch(setTheme({ ...themeState, dividerLightColor: hex }))
+            onChange={(value) => {
+              dispatch(setTheme({ ...themeState, dividerLightColor: value.toHexString() }))
             }}
           />
         </div>
@@ -131,8 +131,8 @@ const ThemeDrawer: React.FC<Props> = ({ open, setOpen }) => {
           <ColorPicker
             presets={presets}
             defaultValue={themeState.backgroundColor}
-            onChange={(_, hex) => {
-              dispatch(setTheme({ ...themeState, backgroundColor: hex }))
+            onChange={(value) => {
+              dispatch(setTheme({ ...themeState, backgroundColor: value.toHexString() }))
             }}
           />
         </div>
