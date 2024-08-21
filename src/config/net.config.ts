@@ -1,3 +1,5 @@
+import * as process from 'node:process'
+
 export default {
   //  axios 基础url地址
   baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:3008/api' : '/api',

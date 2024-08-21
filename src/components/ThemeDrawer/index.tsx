@@ -24,7 +24,7 @@ const ThemeDrawer: React.FC<Props> = ({ open, setOpen }) => {
 
   return (
     <>
-      <Drawer open={open} onClose={() => setOpen(false)} bodyStyle={{ padding: '0 16px' }}>
+      <Drawer open={open} onClose={() => setOpen(false)} styles={{ body: { padding: '0 16px' } }}>
         <Divider>主题</Divider>
         <div className="flex items-center justify-between mb-2">
           <span className="font-bold">主题</span>

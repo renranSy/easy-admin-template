@@ -1,25 +1,28 @@
 import { Menu, MenuProps } from 'antd'
-import {
-  AppstoreOutlined,
-  BugOutlined,
-  DashboardOutlined,
-  MenuOutlined,
-  RocketOutlined,
-  UserOutlined
-} from '@ant-design/icons'
 import { useLocation, useNavigate } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import Sider from 'antd/es/layout/Sider'
+import { IconBox, IconBug, IconCopyright, IconDashboard, IconMenu2, IconRocket, IconUsers } from '@tabler/icons-react'
 
 export const MenuItems = [
-  { label: '工作台', key: '/', icon: <DashboardOutlined style={{ fontSize: '18px' }} /> },
-  { label: '用户', key: '/user', icon: <UserOutlined style={{ fontSize: '18px' }} /> },
-  { label: '资源推荐', key: '/resource', icon: <RocketOutlined style={{ fontSize: '18px' }} /> },
-  { label: '系统信息', key: '/info', icon: <AppstoreOutlined style={{ fontSize: '18px' }} /> },
+  { label: '工作台', key: '/', icon: <IconDashboard size="22px" /> },
+  { label: '用户', key: '/user', icon: <IconUsers size="22px" /> },
+  {
+    label: '功能',
+    key: '/feature',
+    icon: <IconBox size="22px" />,
+    children: [
+      {
+        label: '富文本编辑器',
+        key: '/rich-editor'
+      }
+    ]
+  },
+  { label: '资源推荐', key: '/resource', icon: <IconRocket size="22px" /> },
   {
     label: '多级菜单',
     key: '/multi',
-    icon: <MenuOutlined style={{ fontSize: '18px' }} />,
+    icon: <IconMenu2 style={{ fontSize: '18px' }} />,
     children: [
       {
         label: '一级菜单',
@@ -38,7 +41,7 @@ export const MenuItems = [
   {
     label: '错误页面',
     key: '/error',
-    icon: <BugOutlined style={{ fontSize: '18px' }} />,
+    icon: <IconBug size="22px" />,
     children: [
       {
         label: '404',
@@ -49,7 +52,8 @@ export const MenuItems = [
         key: '/403'
       }
     ]
-  }
+  },
+  { label: '关于', key: '/about', icon: <IconCopyright size="22px" /> }
 ]
 
 const Sidebar = () => {

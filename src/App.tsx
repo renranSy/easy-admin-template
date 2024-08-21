@@ -11,8 +11,9 @@ const NLoading = lazy(() => import('@/components/NLoading'))
 const Layouts = lazy(() => import('@/layouts'))
 const User = lazy(() => import('@/views/user'))
 const Home = lazy(() => import('@/views/home'))
+const RichEditor = lazy(() => import('@/views/feature/richEditor'))
 const Test = lazy(() => import('@/views/test'))
-const SystemInfo = lazy(() => import('@/views/systemInfo'))
+const About = lazy(() => import('@/views/about'))
 const One = lazy(() => import('@/views/multiMenu/one'))
 const PageOne = lazy(() => import('@/views/multiMenu/two/pageOne'))
 const PageTwo = lazy(() => import('@/views/multiMenu/two/pageTwo'))
@@ -45,13 +46,14 @@ function App() {
             <Route path="/" element={<Layouts />}>
               <Route path="/" element={load(<Home />)} />
               <Route path="/user" element={load(<User />)} />
-              <Route path="/info" element={load(<SystemInfo />)} />
+              <Route path="/rich-editor" element={load(<RichEditor />)} />
               <Route path="/resource" element={load(<Resource />)} />
               <Route path="/one" element={load(<One />)} />
               <Route path="/two/one" element={load(<PageOne />)} />
               <Route path="/two/two" element={load(<PageTwo />)} />
               <Route path="/404" element={load(<Error404 />)} />
               <Route path="/403" element={load(<Error403 />)} />
+              <Route path="/about" element={load(<About />)} />
             </Route>
             <Route path="/test" element={load(<Test />)} />
             <Route path="*" element={load(<Error404 />)} />
