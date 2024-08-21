@@ -22,7 +22,10 @@ export const request = <T = any>(url: string, config: AxiosRequestConfig): Promi
       .then((response: AxiosResponse<API.Response<T>>) => {
         resolve(response.data)
       })
-      .catch((error: AxiosError) => {
+      .catch((error: AxiosError<API.Response<T>>) => {
+        if (error.response !== undefined) {
+          resolve(error.response.data)
+        }
         reject(error)
       })
   })
