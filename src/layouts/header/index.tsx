@@ -23,7 +23,6 @@ const Header = () => {
   const clickSearch = (e: React.MouseEvent<SVGElement>) => {
     e.stopPropagation()
     setSearchInputWidth(240)
-    console.log(searchRef)
     searchRef.current!.focus()
   }
 
