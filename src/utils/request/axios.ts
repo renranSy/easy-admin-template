@@ -5,20 +5,19 @@ import config from '@/config/net.config'
 
 const { baseURL } = config
 
-const axiosInstance = axios.create({
+export const AxiosInstance = axios.create({
   baseURL: baseURL
 })
 
 export const request = <T = any>(url: string, config: AxiosRequestConfig): Promise<API.Response<T>> => {
   return new Promise((resolve, reject) => {
-    axiosInstance
-      .request({
-        url,
-        headers: {
-          Authorization: cache.get('token') || ''
-        },
-        ...(config || {})
-      })
+    AxiosInstance.request({
+      url,
+      headers: {
+        Authorization: cache.get('token') || ''
+      },
+      ...(config || {})
+    })
       .then((response: AxiosResponse<API.Response<T>>) => {
         resolve(response.data)
       })
