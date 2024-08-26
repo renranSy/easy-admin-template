@@ -91,7 +91,10 @@ export const useTab = () => {
   }
 
   // 关闭标签
-  const closeTab = (tab: Tab) => {
+  const closeTab = (tab?: Tab) => {
+    if (!tab) {
+      return
+    }
     if (tab.pathname === activeTab.pathname && tabList.length > 1) {
       setActiveTab(tabList.filter((item) => item.pathname !== tab.pathname).slice(-1)[0])
       navigate(tabList.filter((item) => item.pathname !== tab.pathname).slice(-1)[0].pathname)

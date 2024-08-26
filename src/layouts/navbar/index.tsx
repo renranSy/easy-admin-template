@@ -94,6 +94,9 @@ export const Navbar = () => {
     })
 
     switch (eventName) {
+      case 'close':
+        closeTab(tabList.find((item) => item.pathname === activeKey))
+        break
       case 'closeLeft':
         closeTabList(
           tabList.filter((_, index) => index < tabIndex),
