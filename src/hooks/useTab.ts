@@ -17,7 +17,10 @@ let TAB_LIST: Tab[] = []
 
 const WHITE_LIST: string[] = ['/login']
 
-const firstTab = MenuItems.filter((item) => item.label === '工作台')[0]
+export const DefaultTab: Tab = {
+  pathname: MenuItems[0].key,
+  label: MenuItems[0].label
+}
 
 const flattenMenu = (menu: Item[]) => {
   const flattenedMenu: Item[] = []
@@ -56,14 +59,8 @@ export const useTab = () => {
     pathname: location.pathname,
     label: getLabel(location.pathname)
   })
-  const [tabList, setTabList] = useState<Tab[]>(
-    JSON.parse(cache.get('tabList')) || [
-      {
-        pathname: firstTab.key,
-        label: getLabel(firstTab.key)
-      }
-    ]
-  )
+  const [tabList, setTabList] = useState<Tab[]>(JSON.parse(cache.get('tabList')) || [DefaultTab])
+  const defaultTab = TAB_LIST[0]
 
   // 监听路由
   useEffect(() => {
@@ -71,9 +68,9 @@ export const useTab = () => {
     addTab({ pathname: location.pathname, label: getLabel(location.pathname) })
 
     if (tabList.length === 0) {
-      setTabList([{ pathname: firstTab.key, label: getLabel(firstTab.key) }])
-      setActiveTab({ pathname: firstTab.key, label: getLabel(firstTab.key) })
-      navigate(firstTab.key)
+      setTabList([DefaultTab])
+      setActiveTab(DefaultTab)
+      navigate(DefaultTab.pathname)
     }
   }, [location.pathname, tabList])
 
@@ -103,10 +100,28 @@ export const useTab = () => {
     cache.set('tabList', JSON.stringify(tabList.filter((item) => item.pathname !== tab.pathname)))
   }
 
+  // 关闭多个标签
+  const closeTabList = (closeTabList: Tab[], pathname: string) => {
+    const list = tabList.filter((item) => !closeTabList.map((item) => item.pathname).includes(item.pathname))
+    console.log(list)
+
+    if (closeTabList.map((item) => item.pathname).includes(activeTab.pathname)) {
+      const tab = tabList.find((item) => item.pathname == pathname) || DefaultTab
+      setActiveTab(tab)
+      navigate(tab.pathname)
+      console.log(tabList)
+      console.log(tabList.find((item) => item.pathname == pathname) || DefaultTab)
+    }
+    setTabList(list)
+    cache.set('tabList', JSON.stringify(list))
+  }
+
   return {
     activeTab,
     tabList,
+    defaultTab,
     clickTab,
-    closeTab
+    closeTab,
+    closeTabList
   }
 }
