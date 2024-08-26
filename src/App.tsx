@@ -6,6 +6,7 @@ import zhCN from 'antd/lib/locale/zh_CN'
 import { RootState } from '@/store'
 import { useDispatch, useSelector } from 'react-redux'
 import { initTheme } from '@/store/theme'
+import IContextMenu from '@/components/IContextMenuWrapper/IContextMenu'
 
 const NLoading = lazy(() => import('@/components/NLoading'))
 const Layouts = lazy(() => import('@/layouts'))
@@ -32,35 +33,38 @@ function App() {
   }, [])
 
   return (
-    <HashRouter>
-      <ConfigProvider
-        locale={zhCN}
-        theme={{
-          token: {
-            colorPrimary: themeState.primaryColor
-          }
-        }}>
-        <AntdApp>
-          <Routes>
-            <Route path="/login" element={load(<Login />)} />
-            <Route path="/" element={<Layouts />}>
-              <Route path="/" element={load(<Home />)} />
-              <Route path="/user" element={load(<User />)} />
-              <Route path="/rich-editor" element={load(<RichEditor />)} />
-              <Route path="/resource" element={load(<Resource />)} />
-              <Route path="/one" element={load(<One />)} />
-              <Route path="/two/one" element={load(<PageOne />)} />
-              <Route path="/two/two" element={load(<PageTwo />)} />
-              <Route path="/404" element={load(<Error404 />)} />
-              <Route path="/403" element={load(<Error403 />)} />
-              <Route path="/about" element={load(<About />)} />
-            </Route>
-            <Route path="/test" element={load(<Test />)} />
-            <Route path="*" element={load(<Error404 />)} />
-          </Routes>
-        </AntdApp>
-      </ConfigProvider>
-    </HashRouter>
+    <>
+      <HashRouter>
+        <ConfigProvider
+          locale={zhCN}
+          theme={{
+            token: {
+              colorPrimary: themeState.primaryColor
+            }
+          }}>
+          <AntdApp>
+            <Routes>
+              <Route path="/login" element={load(<Login />)} />
+              <Route path="/" element={<Layouts />}>
+                <Route path="/" element={load(<Home />)} />
+                <Route path="/user" element={load(<User />)} />
+                <Route path="/rich-editor" element={load(<RichEditor />)} />
+                <Route path="/resource" element={load(<Resource />)} />
+                <Route path="/one" element={load(<One />)} />
+                <Route path="/two/one" element={load(<PageOne />)} />
+                <Route path="/two/two" element={load(<PageTwo />)} />
+                <Route path="/404" element={load(<Error404 />)} />
+                <Route path="/403" element={load(<Error403 />)} />
+                <Route path="/about" element={load(<About />)} />
+              </Route>
+              <Route path="/test" element={load(<Test />)} />
+              <Route path="*" element={load(<Error404 />)} />
+            </Routes>
+          </AntdApp>
+        </ConfigProvider>
+        <IContextMenu />
+      </HashRouter>
+    </>
   )
 }
 
