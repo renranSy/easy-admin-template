@@ -1,60 +1,41 @@
 import { Menu, MenuProps } from 'antd'
 import { useLocation, useNavigate } from 'react-router-dom'
-import React, { useEffect, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import Sider from 'antd/es/layout/Sider'
-import { IconBox, IconBug, IconCopyright, IconDashboard, IconMenu2, IconRocket, IconUsers } from '@tabler/icons-react'
+import { RouteRecordRaw } from '@/router'
+import dashboard from '@/router/modules/dashboard'
 
-export const MenuItems = [
-  { label: '工作台', key: '/', icon: <IconDashboard size="22px" /> },
-  { label: '用户', key: '/user', icon: <IconUsers size="22px" /> },
-  {
-    label: '功能',
-    key: '/feature',
-    icon: <IconBox size="22px" />,
-    children: [
-      {
-        label: '富文本编辑器',
-        key: '/rich-editor'
-      }
-    ]
-  },
-  { label: '资源推荐', key: '/resource', icon: <IconRocket size="22px" /> },
-  {
-    label: '多级菜单',
-    key: '/multi',
-    icon: <IconMenu2 style={{ fontSize: '18px' }} />,
-    children: [
-      {
-        label: '一级菜单',
-        key: '/one'
-      },
-      {
-        label: '二级菜单',
-        key: '/two',
-        children: [
-          { label: '页面一', key: '/two/one' },
-          { label: '页面二', key: '/two/two' }
-        ]
-      }
-    ]
-  },
-  {
-    label: '错误页面',
-    key: '/error',
-    icon: <IconBug size="22px" />,
-    children: [
-      {
-        label: '404',
-        key: '/404'
-      },
-      {
-        label: '403',
-        key: '/403'
-      }
-    ]
-  },
-  { label: '关于', key: '/about', icon: <IconCopyright size="22px" /> }
-]
+type MenuItem = {
+  key: string
+  label: string
+  icon?: ReactNode
+  children?: MenuItem[]
+}
+
+const convertRoutesToMenuItems = (routes: RouteRecordRaw[]): MenuItem[] => {
+  return routes.map((route) => {
+    if (!route.meta?.label) {
+      throw new Error('error convert routes')
+    }
+    const menuItem: MenuItem = route.meta?.icon
+      ? {
+          label: route.meta.label,
+          key: route.path,
+          icon: route.meta?.icon
+        }
+      : {
+          label: route.meta.label,
+          key: route.path
+        }
+
+    if (route.children) {
+      menuItem.children = convertRoutesToMenuItems(route.children)
+    }
+    return menuItem
+  })
+}
+
+export const MenuItems = convertRoutesToMenuItems(dashboard)
 
 const Sidebar = () => {
   const location = useLocation()
@@ -101,7 +82,7 @@ const Sidebar = () => {
         defaultSelectedKeys={[location.pathname]}
         selectedKeys={[location.pathname]}
         onClick={handleClickMenuItem}
-        items={MenuItems}
+        items={convertRoutesToMenuItems(dashboard)}
         mode="inline"></Menu>
     </Sider>
   )

@@ -1,4 +1,4 @@
-import React, { JSX, lazy, Suspense, useEffect } from 'react'
+import React, { lazy, ReactElement, Suspense, useEffect } from 'react'
 import './index.less'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import { App as AntdApp, ConfigProvider } from 'antd'
@@ -7,23 +7,13 @@ import { RootState } from '@/store'
 import { useDispatch, useSelector } from 'react-redux'
 import { initTheme } from '@/store/theme'
 import IContextMenu from '@/components/IContextMenuWrapper/IContextMenu'
+import { dynamicRoutes, RouteRecordRaw } from '@/router'
+import { coreRoutes } from '@/router/core'
 
 const NLoading = lazy(() => import('@/components/NLoading'))
 const Layouts = lazy(() => import('@/layouts'))
-const User = lazy(() => import('@/views/user'))
-const Home = lazy(() => import('@/views/home'))
-const RichEditor = lazy(() => import('@/views/feature/richEditor'))
-const Test = lazy(() => import('@/views/test'))
-const About = lazy(() => import('@/views/about'))
-const One = lazy(() => import('@/views/multiMenu/one'))
-const PageOne = lazy(() => import('@/views/multiMenu/two/pageOne'))
-const PageTwo = lazy(() => import('@/views/multiMenu/two/pageTwo'))
-const Resource = lazy(() => import('@/views/resource'))
-const Login = lazy(() => import('@/views/login'))
-const Error404 = lazy(() => import('@/views/error/404'))
-const Error403 = lazy(() => import('@/views/error/403'))
 
-const load = (children: JSX.Element) => <Suspense fallback={<NLoading />}>{children}</Suspense>
+const load = (children: ReactElement) => <Suspense fallback={<NLoading />}>{children}</Suspense>
 
 function App() {
   const themeState = useSelector((state: RootState) => state.theme)
@@ -32,6 +22,39 @@ function App() {
     dispatch(initTheme())
   }, [])
 
+  const getRoutes = () => {
+    const result: ReactElement[] = []
+
+    const dfs = (route: RouteRecordRaw) => {
+      if (route.component) {
+        result.push(<Route path={route.path} key={route.path} element={load(route.component)} />)
+      }
+      if (!route.children) {
+        return
+      }
+      if (route.children.length > 0) {
+        for (const child of route.children) {
+          dfs(child)
+        }
+      }
+    }
+
+    for (const route of dynamicRoutes) {
+      dfs(route)
+    }
+
+    return result
+  }
+
+  const getCoreRoutes = () => {
+    const result: ReactElement[] = []
+    coreRoutes.forEach((route) => {
+      if (route.component) {
+        result.push(<Route path={route.path} key={route.path} element={load(route.component)} />)
+      }
+    })
+    return result
+  }
   return (
     <>
       <HashRouter>
@@ -44,21 +67,10 @@ function App() {
           }}>
           <AntdApp>
             <Routes>
-              <Route path="/login" element={load(<Login />)} />
               <Route path="/" element={<Layouts />}>
-                <Route path="/" element={load(<Home />)} />
-                <Route path="/user" element={load(<User />)} />
-                <Route path="/rich-editor" element={load(<RichEditor />)} />
-                <Route path="/resource" element={load(<Resource />)} />
-                <Route path="/one" element={load(<One />)} />
-                <Route path="/two/one" element={load(<PageOne />)} />
-                <Route path="/two/two" element={load(<PageTwo />)} />
-                <Route path="/404" element={load(<Error404 />)} />
-                <Route path="/403" element={load(<Error403 />)} />
-                <Route path="/about" element={load(<About />)} />
+                {getRoutes().map((item) => item)}
               </Route>
-              <Route path="/test" element={load(<Test />)} />
-              <Route path="*" element={load(<Error404 />)} />
+              {getCoreRoutes().map((item) => item)}
             </Routes>
           </AntdApp>
         </ConfigProvider>

@@ -15,8 +15,6 @@ export type Item = {
 
 let TAB_LIST: Tab[] = []
 
-const WHITE_LIST: string[] = ['/login']
-
 export const DefaultTab: Tab = {
   pathname: MenuItems[0].key,
   label: MenuItems[0].label
