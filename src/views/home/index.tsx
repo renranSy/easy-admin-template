@@ -1,26 +1,10 @@
-import React, { useState } from 'react'
-import { getWorkbench } from '@/api'
-import useAsync from '../../hooks/useAsync'
+import React from 'react'
 import { Line, LineConfig } from '@ant-design/plots'
 import { Avatar, Card, Col, Descriptions, DescriptionsProps, List, Row, Timeline } from 'antd'
 import { AccountBookFilled, MessageFilled, ShoppingCartOutlined, UsergroupAddOutlined } from '@ant-design/icons'
-import GeneralInfo = API.GeneralInfo
+import { chartData, commentList, updateLog } from '@/views/home/data'
 
 const Home = () => {
-  const [chartData, setChartData] = useState<API.ChartData[]>([])
-  const [updateLog, setUpdateLog] = useState<API.UpdateLog[]>()
-  const [commentList, setCommentList] = useState<API.Comment[]>()
-  const [generalInfo, setGeneralInfo] = useState<GeneralInfo>()
-
-  // 获取工作台数据
-  useAsync(async () => {
-    const resp = await getWorkbench()
-    setChartData(resp.data.chartData)
-    setUpdateLog(resp.data.updateLog)
-    setCommentList(resp.data.commentList)
-    setGeneralInfo(resp.data.generalInfo)
-  }, [])
-
   // 图表配置
   const config: LineConfig = {
     data: chartData,
@@ -48,22 +32,22 @@ const Home = () => {
   const infoList = [
     {
       name: '新用户',
-      data: generalInfo?.newUser,
+      data: 990,
       icon: <UsergroupAddOutlined style={{ fontSize: '48px', color: '#40c9c6' }} />
     },
     {
       name: '消息',
-      data: generalInfo?.newMessage,
+      data: 121,
       icon: <MessageFilled style={{ fontSize: '48px', color: '#36a3f7' }} />
     },
     {
       name: '流水',
-      data: generalInfo?.account,
+      data: 1111,
       icon: <AccountBookFilled style={{ fontSize: '48px', color: '#f4516c' }} />
     },
     {
       name: '购物',
-      data: generalInfo?.shop,
+      data: 200,
       icon: <ShoppingCartOutlined style={{ fontSize: '48px', color: '#34bfa3' }} />
     }
   ]

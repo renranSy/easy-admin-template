@@ -1,4 +1,4 @@
-import React, { ComponentType, JSX, LazyExoticComponent, ReactElement, ReactNode } from 'react'
+import { ReactElement, ReactNode } from 'react'
 import { coreRoutes, fallbackNoAuthRoute, fallbackNotFoundRoute } from '@/router/core'
 import { mergeRouteModules } from '@/utils/helpers'
 import { traverseTreeValues } from '@/utils/tree'

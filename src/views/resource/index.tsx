@@ -1,24 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Avatar, Card, Col, List, Row } from 'antd'
-import useAsync from '@/hooks/useAsync'
-import { getResource } from '@/api'
+import { communityList, componentLibraryList, projectList, teamList } from '@/views/resource/data'
 
 export const Resource = () => {
-  const [teamList, setTeamList] = useState<API.Team[]>([])
-  const [componentLibraryList, setComponentLibraryList] = useState<API.ComponentLibrary[]>([])
-  const [projectList, setProjectList] = useState<API.Project[]>([])
-  const [communityList, setCommunityList] = useState<API.Community[]>([])
   const goTo = (url: string) => {
     window.open(url)
   }
 
-  useAsync(async () => {
-    const resp = await getResource()
-    setTeamList(resp.data.teamList)
-    setComponentLibraryList(resp.data.componentLibraryList)
-    setProjectList(resp.data.projectList)
-    setCommunityList(resp.data.communityList)
-  })
   return (
     <>
       <Row gutter={16} wrap={false}>

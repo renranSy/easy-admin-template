@@ -19,9 +19,9 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: [ 'prettier', 'react', 'eslint-plugin-prettier' ],
+  plugins: ['prettier', 'react', 'eslint-plugin-prettier'],
   rules: {
     'prettier/prettier': 'warn',
-    '@typescript-eslint/no-explicit-any': [ 'off' ]
+    '@typescript-eslint/no-explicit-any': ['off']
   }
-};
+}

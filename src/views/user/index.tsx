@@ -147,7 +147,6 @@ const User: React.FC = () => {
     <div className="p-3 bg-white">
       <Button type="primary">添加</Button>
       <Table
-        scroll={{ y: 'calc(100vh - 310px)' }}
         className="mt-2"
         columns={columns}
         pagination={{ position: ['bottomLeft'], pageSize: 9 }}

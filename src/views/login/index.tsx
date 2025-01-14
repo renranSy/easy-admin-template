@@ -2,11 +2,11 @@ import React, { createRef, useState } from 'react'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { App, Button, Input, InputRef } from 'antd'
 import { useNavigate } from 'react-router-dom'
-import { getUserInfo, login } from '@/api'
 import cache from '@/utils/cache'
 import { useDispatch } from 'react-redux'
 import { userLogin } from '@/store/user'
 import useAsync from '@/hooks/useAsync'
+import api from '@/api'
 
 const Login = () => {
   const { message } = App.useApp()
@@ -33,7 +33,7 @@ const Login = () => {
     }
 
     setLoading(true)
-    const resp = await login({
+    const resp = await api.login({
       username,
       password
     })
@@ -49,7 +49,7 @@ const Login = () => {
   }
 
   useAsync(async () => {
-    const resp = await getUserInfo()
+    const resp = await api.getUserInfo()
     if (resp.code == 200) {
       dispatch(userLogin(resp.data))
       navigate('/')

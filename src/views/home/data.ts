@@ -1,4 +1,4 @@
-const chartData = [
+export const chartData = [
   {
     name: 'China',
     year: '2000',
@@ -376,7 +376,7 @@ const chartData = [
   }
 ]
 
-const updateLog = [
+export const updateLog = [
   {
     children: '😥 代码虐我千百遍，我待代码如初恋',
     color: 'green'
@@ -395,7 +395,7 @@ const updateLog = [
   }
 ]
 
-const commentList = [
+export const commentList = [
   {
     name: '荏苒',
     description: '我热爱代码✨，但我更爱我的女朋友❤。'
@@ -411,28 +411,5 @@ const commentList = [
   {
     name: '荏苒',
     description: '希望以后不要秃头☹。'
-  }
-]
-export default [
-  {
-    url: '/api/getWorkbench',
-    type: 'get',
-    response() {
-      return {
-        code: 200,
-        msg: 'success',
-        data: {
-          chartData,
-          updateLog,
-          commentList,
-          generalInfo: {
-            newUser: '12,138',
-            newMessage: '32,183',
-            account: '91,382',
-            shop: '12,2812'
-          }
-        }
-      }
-    }
   }
 ]

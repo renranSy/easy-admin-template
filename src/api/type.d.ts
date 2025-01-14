@@ -19,6 +19,67 @@ declare namespace API {
     }
   }
 
+  type User = {
+    id?: number
+    username?: string
+    password?: string
+    email?: string
+    status?: number
+    createdAt?: string
+  }
+
+  type AddUser = {
+    username: string
+    password: string
+    email: string
+    roleIdList: number[]
+    status: number
+  }
+
+  type EditUser = {
+    username: string
+    email: string
+    roleIdList: string
+    status: number
+  }
+
+  type Menu = {
+    id?: number
+    name?: string
+    code?: string
+    description?: string
+    sequence?: number
+    type?: number
+    path?: string
+    status?: number
+    parentName?: string
+    parentId?: number
+    children?: Menu[]
+    menuResource?: MenuResource[]
+    createdAt?: string
+  }
+
+  type MenuResource = {
+    id?: number
+    menuId?: number
+    method?: string
+    path?: string
+    createdAt?: string
+  }
+
+  type Role = {
+    id?: number
+    name?: string
+    description?: string
+    sequence?: number
+    status?: number
+    createdAt?: string
+  }
+
+  type RoleMenuRes = {
+    list: number[]
+  }
+
   type ChartData = {
     gdp: number
     year: string

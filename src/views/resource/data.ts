@@ -1,4 +1,4 @@
-const teamList = [
+export const teamList = [
   {
     name: '腾讯Web前端团队',
     link: 'http://www.alloyteam.com/',
@@ -30,7 +30,7 @@ const teamList = [
     avatar: '/src/assets/logo/elm.jpg'
   }
 ]
-const componentLibraryList = [
+export const componentLibraryList = [
   {
     name: 'Ant Design',
     icon: '/src/assets/logo/antd-logo.svg',
@@ -82,7 +82,7 @@ const componentLibraryList = [
     link: 'https://react-bootstrap.netlify.app/'
   }
 ]
-const projectList = [
+export const projectList = [
   {
     name: 'Github',
     description: '世界最大的开源社区',
@@ -120,7 +120,7 @@ const projectList = [
     link: 'https://github.com/dunwu/linux-tutorial'
   }
 ]
-const communityList = [
+export const communityList = [
   {
     avatar: '/src/assets/logo/cainiao.ico',
     name: '菜鸟教程',
@@ -140,10 +140,10 @@ const communityList = [
     link: 'https://juejin.cn/'
   },
   {
-    avatar: '/src/assets/logo/oschina.ico',
-    name: '开源中国',
-    description: '目前国内最大的开源技术社区。',
-    link: 'https://www.oschina.net/'
+    avatar: '/src/assets/logo/linux-do.png',
+    name: 'LINUX DO',
+    description: '新的理想型社区。',
+    link: 'https://linux.do/'
   },
   {
     avatar: '/src/assets/logo/sifou.png',
@@ -156,23 +156,5 @@ const communityList = [
     name: 'CSDN',
     description: '精华与糟粕并存。',
     link: 'https://www.csdn.net/'
-  }
-]
-export default [
-  {
-    url: '/api/getResource',
-    type: 'get',
-    response() {
-      return {
-        code: 200,
-        msg: 'success',
-        data: {
-          teamList,
-          componentLibraryList,
-          projectList,
-          communityList
-        }
-      }
-    }
   }
 ]

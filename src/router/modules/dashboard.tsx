@@ -1,6 +1,19 @@
 import { RouteRecordRaw } from '@/router'
-import { IconBox, IconCopyright, IconDashboard, IconMenu2, IconRocket, IconUsers } from '@tabler/icons-react'
+import {
+  IconAdjustments,
+  IconBox,
+  IconCopyright,
+  IconDashboard,
+  IconMenu2,
+  IconRocket,
+  IconSettings,
+  IconUser,
+  IconUsers
+} from '@tabler/icons-react'
 import React, { lazy } from 'react'
+import Admin from '@/views/system/admin'
+import Role from '@/views/system/role'
+import Menu from '@/views/system/menu'
 
 const User = lazy(() => import('@/views/user'))
 const Home = lazy(() => import('@/views/home'))
@@ -27,7 +40,7 @@ const routes: RouteRecordRaw[] = [
     component: <User />,
     meta: {
       label: '用户',
-      icon: <IconUsers size="22px" />
+      icon: <IconUser size="22px" />
     }
   },
   {
@@ -97,6 +110,43 @@ const routes: RouteRecordRaw[] = [
             }
           }
         ]
+      }
+    ]
+  },
+  {
+    path: '/system',
+    name: 'System',
+    meta: {
+      label: '系统管理',
+      icon: <IconSettings size="22px" />
+    },
+    children: [
+      {
+        path: '/system/admin',
+        name: 'Admin',
+        component: <Admin />,
+        meta: {
+          label: '用户管理',
+          icon: <IconUsers size="22px" />
+        }
+      },
+      {
+        path: '/system/role',
+        name: 'Admin',
+        component: <Role />,
+        meta: {
+          label: '角色管理',
+          icon: <IconAdjustments size="22px" />
+        }
+      },
+      {
+        path: '/system/menu',
+        name: 'Admin',
+        component: <Menu />,
+        meta: {
+          label: '菜单管理',
+          icon: <IconMenu2 size="22px" />
+        }
       }
     ]
   },

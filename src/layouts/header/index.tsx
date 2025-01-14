@@ -5,12 +5,12 @@ import { CaretDownFilled, LogoutOutlined, SettingOutlined, UserOutlined } from '
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/store'
-import { getUserInfo } from '@/api'
 import useAsync from '@/hooks/useAsync'
 import { userLogin } from '@/store/user'
 import cache from '@/utils/cache'
 import { IconArrowsMaximize, IconReload, IconSearch, IconShirt } from '@tabler/icons-react'
 import ThemeDrawer from '@/components/ThemeDrawer'
+import api from '@/api'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -40,7 +40,7 @@ const Header = () => {
 
   // 获取管理员信息
   useAsync(async () => {
-    const resp = await getUserInfo()
+    const resp = await api.getUserInfo()
     if (resp.code === 200) {
       dispatch(userLogin(resp.data))
     } else {
@@ -163,7 +163,7 @@ const Header = () => {
               className="flex items-center px-2 h-full  cursor-pointer"
               style={{ transition: 'all 0.2s ease-in-out' }}>
               <Avatar
-                src={userState.avatar}
+                src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80"
                 style={{
                   width: '40px',
                   height: '40px'
