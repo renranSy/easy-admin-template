@@ -9,6 +9,8 @@
 `Easy-admin-template`是一个免费开源的中后台模版，使用了`React18`、`vite`、`react-router-dom v6`、`less`
 等主流技术开发，开箱即用的中后天前端解决方案。
 
+后端模版: [https://github.com/renranSy/easy-gin-template](https://github.com/renranSy/easy-gin-template)
+
 项目目的：
 
 - 学习`TypeScript`
