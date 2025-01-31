@@ -6,37 +6,39 @@ import { Space } from 'antd'
 import { IconX } from '@tabler/icons-react'
 import IContextMenuWrapper from '../../components/IContextMenuWrapper'
 import IContextMenuItem, { IContextMenuOption } from '@/components/IContextMenuWrapper/IContextMenuItem'
+import useI18n from '@/hooks/useI18n'
 
 export const Navbar = () => {
+  const { t } = useI18n()
   const { activeTab, tabList, clickTab, closeTab, closeTabList } = useTab()
   const [parent] = useAutoAnimate()
 
   const options: IContextMenuOption[] = [
     {
       key: 'close',
-      name: '关闭',
+      name: t('tabContextMenu.close'),
       icon: 'x',
       divider: true
     },
     {
       key: 'closeLeft',
-      name: '关闭左侧标签页',
+      name: t('tabContextMenu.closeLeft'),
       icon: 'arrowBarToLeft'
     },
     {
       key: 'closeRight',
-      name: '关闭右侧标签页',
+      name: t('tabContextMenu.closeRight'),
       icon: 'arrowBarToRight',
       divider: true
     },
     {
       key: 'closeOther',
-      name: '关闭其他标签页',
+      name: t('tabContextMenu.closeOther'),
       icon: 'arrowBarBoth'
     },
     {
       key: 'closeAll',
-      name: '关闭所有标签页',
+      name: t('tabContextMenu.closeAll'),
       icon: 'arrowsRightLeft'
     }
   ]
@@ -125,17 +127,17 @@ export const Navbar = () => {
     <div className="nav-container px-3 box-border shadow-md bg-white flex items-center text-nowrap">
       <IContextMenuWrapper onClick={onClickMenu}>
         <Space ref={parent}>
-          {tabList.map((t) => (
+          {tabList.map((tab) => (
             <IContextMenuItem
               options={options}
-              activeKey={t.pathname}
-              key={t.pathname}
+              activeKey={tab.pathname}
+              key={tab.pathname}
               onSetOptions={onSetOptions}
               className={
-                'tab cursor-pointer flex items-center ' + (t.pathname === activeTab.pathname ? 'active-tab' : '')
+                'tab cursor-pointer flex items-center ' + (tab.pathname === activeTab.pathname ? 'active-tab' : '')
               }>
-              <span onClick={() => clickTab(t)}>{t.label}</span>
-              <Close tab={t} />
+              <span onClick={() => clickTab(tab)}>{t(tab.label)}</span>
+              <Close tab={tab} />
             </IContextMenuItem>
           ))}
         </Space>

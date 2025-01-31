@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import cache from '@/utils/cache'
-import { MenuItems } from '@/layouts/Sidebar'
+import { MenuItems } from '../layouts/sidebar'
 
 export type Tab = {
   pathname: string

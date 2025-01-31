@@ -1,0 +1,42 @@
+{
+  "login": {
+    "title": "Easy Admin",
+    "btnText": "Login",
+    "placeholder": {
+      "username": "username: admin",
+      "password": "password: admin"
+    }
+  },
+  "menus": {
+    "workbench": "Workbench",
+    "user": "User",
+    "feature": {
+      "text": "Feature",
+      "markdown": "Markdown"
+    },
+    "resource": "Resource",
+    "multiMenu": {
+      "text": "Multi Menu",
+      "one": "FirstMenu",
+      "two": {
+        "text": "SecondMenu",
+        "pageOne": "PageOne",
+        "pageTwo": "PageTwo"
+      }
+    },
+    "system": {
+      "text": "System",
+      "admin": "Admin",
+      "role": "Role",
+      "menu": "Menu"
+    },
+    "about": "About"
+  },
+  "tabContextMenu": {
+    "close": "Close",
+    "closeLeft": "Close Tabs to the Left",
+    "closeRight": "Close Tabs to the Right",
+    "closeOther": "Close Other Tabs",
+    "closeAll": "Close All Tabs"
+  }
+}

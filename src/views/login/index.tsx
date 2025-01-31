@@ -7,9 +7,11 @@ import { useDispatch } from 'react-redux'
 import { userLogin } from '@/store/user'
 import useAsync from '@/hooks/useAsync'
 import api from '@/api'
+import useI18n from '@/hooks/useI18n'
 
 const Login = () => {
   const { message } = App.useApp()
+  const { t } = useI18n()
 
   const dispatch = useDispatch()
 
@@ -100,16 +102,16 @@ const Login = () => {
         </div>
         <div className="flex flex-col justify-center" style={{ width: '400px' }}>
           <div className="text-center font-bold" style={{ fontSize: '28px' }}>
-            Easy Admin
+            {t('login.title')}
           </div>
           <div className="mt-8 px-4">
             <div className="mb-2 w-full">
-              <Input ref={usernameRef} placeholder="用户名为：admin" prefix={<UserOutlined />} />
+              <Input ref={usernameRef} placeholder={t('login.placeholder.username')} prefix={<UserOutlined />} />
             </div>
             <div className="mb-2 w-full">
-              <Input
+              <Input.Password
                 ref={passwordRef}
-                placeholder="密码为：admin"
+                placeholder={t('login.placeholder.password')}
                 prefix={<LockOutlined />}
                 onKeyDown={async (event) => {
                   if (event.key === 'Enter') {
@@ -125,7 +127,7 @@ const Login = () => {
               className="mt-4"
               type="primary"
               block>
-              登录
+              {t('login.btnText')}
             </Button>
           </div>
         </div>

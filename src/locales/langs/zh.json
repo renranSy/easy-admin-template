@@ -1,0 +1,42 @@
+{
+  "login": {
+    "title": "Easy Admin 管理后台",
+    "btnText": "登录",
+    "placeholder": {
+      "username": "用户名: admin",
+      "password": "密码: admin"
+    }
+  },
+  "menus": {
+    "workbench": "工作台",
+    "user": "用户",
+    "feature": {
+      "text": "功能",
+      "markdown": "富文本编辑器"
+    },
+    "resource": "资源推荐",
+    "multiMenu": {
+      "text": "多级菜单",
+      "one": "一级菜单",
+      "two": {
+        "text": "二级菜单",
+        "pageOne": "页面一",
+        "pageTwo": "页面二"
+      }
+    },
+    "system": {
+      "text": "系统管理",
+      "admin": "用户管理",
+      "role": "角色管理",
+      "menu": "菜单管理"
+    },
+    "about": "关于"
+  },
+  "tabContextMenu": {
+    "close": "关闭",
+    "closeLeft": "关闭左侧标签页",
+    "closeRight": "关闭右侧标签页",
+    "closeOther": "关闭其他标签页",
+    "closeAll": "关闭所有标签页"
+  }
+}

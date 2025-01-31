@@ -1,5 +1,5 @@
 import EasyHeader from './header'
-import EasySidebar from './Sidebar'
+import EasySidebar from './sidebar'
 import EasyNavbar from '@/layouts/navbar'
 import React from 'react'
 import { Layout } from 'antd'

@@ -8,11 +8,13 @@ import { RootState } from '@/store'
 import useAsync from '@/hooks/useAsync'
 import { userLogin } from '@/store/user'
 import cache from '@/utils/cache'
-import { IconArrowsMaximize, IconReload, IconSearch, IconShirt } from '@tabler/icons-react'
+import { IconArrowsMaximize, IconReload, IconSearch, IconShirt, IconTransactionBitcoin } from '@tabler/icons-react'
 import ThemeDrawer from '@/components/ThemeDrawer'
 import api from '@/api'
+import useI18n from '@/hooks/useI18n'
 
 const Header = () => {
+  const { lang, changeLanguage } = useI18n()
   const navigate = useNavigate()
   const userState = useSelector((state: RootState) => state.user)
   const [showTheme, setShowTheme] = useState(false)
@@ -118,6 +120,27 @@ const Header = () => {
               className="active:text-blue-4 text-gray-5"
               style={{ fontSize: '18px' }}
             />
+          </div>
+          <div
+            className="flex items-center mr-2 px-2 h-full  cursor-pointer hover:bg-gray-1"
+            style={{ transition: 'all 0.2s ease-in-out' }}>
+            {lang === 'zh' ? (
+              <div
+                onClick={() => {
+                  changeLanguage('en')
+                }}
+                className="text-lg text-gray-5">
+                中
+              </div>
+            ) : (
+              <div
+                onClick={() => {
+                  changeLanguage('zh')
+                }}
+                className="text-lg text-gray-5">
+                En
+              </div>
+            )}
           </div>
 
           <Dropdown

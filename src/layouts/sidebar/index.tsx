@@ -4,6 +4,7 @@ import React, { ReactNode, useEffect, useState } from 'react'
 import Sider from 'antd/es/layout/Sider'
 import { RouteRecordRaw } from '@/router'
 import dashboard from '@/router/modules/dashboard'
+import useI18n from '@/hooks/useI18n'
 
 type MenuItem = {
   key: string
@@ -40,6 +41,7 @@ export const MenuItems = convertRoutesToMenuItems(dashboard)
 const Sidebar = () => {
   const location = useLocation()
   const navigate = useNavigate()
+  const { t } = useI18n()
 
   const [collapsed, setCollapsed] = useState(false)
 
@@ -68,6 +70,16 @@ const Sidebar = () => {
     navigate(e.key)
   }
 
+  const translateMenus = (menuItems: MenuItem[]) => {
+    return menuItems.map((item) => {
+      item.label = t(item.label)
+      if (item.children) {
+        translateMenus(item.children)
+      }
+      return item
+    })
+  }
+
   return (
     <Sider
       collapsible
@@ -82,7 +94,7 @@ const Sidebar = () => {
         defaultSelectedKeys={[location.pathname]}
         selectedKeys={[location.pathname]}
         onClick={handleClickMenuItem}
-        items={convertRoutesToMenuItems(dashboard)}
+        items={translateMenus(convertRoutesToMenuItems(dashboard))}
         mode="inline"></Menu>
     </Sider>
   )

@@ -27,10 +27,10 @@ const Resource = lazy(() => import('@/views/resource'))
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'DashBoard',
+    name: 'Workbench',
     component: <Home />,
     meta: {
-      label: '工作台',
+      label: 'menus.workbench',
       icon: <IconDashboard size="22px" />
     }
   },
@@ -39,7 +39,7 @@ const routes: RouteRecordRaw[] = [
     name: 'User',
     component: <User />,
     meta: {
-      label: '用户',
+      label: 'menus.user',
       icon: <IconUser size="22px" />
     }
   },
@@ -47,7 +47,7 @@ const routes: RouteRecordRaw[] = [
     path: '/feature',
     name: 'Feature',
     meta: {
-      label: '功能',
+      label: 'menus.feature.text',
       icon: <IconBox size="22px" />
     },
     children: [
@@ -56,7 +56,7 @@ const routes: RouteRecordRaw[] = [
         name: 'RichEditor',
         component: <RichEditor />,
         meta: {
-          label: '富文本编辑器'
+          label: 'menus.feature.markdown'
         }
       }
     ]
@@ -66,7 +66,7 @@ const routes: RouteRecordRaw[] = [
     name: 'Resource',
     component: <Resource />,
     meta: {
-      label: '资源推荐',
+      label: 'menus.resource',
       icon: <IconRocket size="22px" />
     }
   },
@@ -74,7 +74,7 @@ const routes: RouteRecordRaw[] = [
     path: '/multi',
     name: 'Multi',
     meta: {
-      label: '多级菜单',
+      label: 'menus.multiMenu.text',
       icon: <IconMenu2 style={{ fontSize: '18px' }} />
     },
     children: [
@@ -83,14 +83,14 @@ const routes: RouteRecordRaw[] = [
         name: 'MultiOne',
         component: <One />,
         meta: {
-          label: '一级菜单'
+          label: 'menus.multiMenu.one'
         }
       },
       {
         path: '/multi/two',
         name: 'MultiTwo',
         meta: {
-          label: '二级菜单'
+          label: 'menus.multiMenu.two.text'
         },
         children: [
           {
@@ -98,7 +98,7 @@ const routes: RouteRecordRaw[] = [
             name: 'MultiTwoOne',
             component: <PageOne />,
             meta: {
-              label: '页面一'
+              label: 'menus.multiMenu.two.pageOne'
             }
           },
           {
@@ -106,7 +106,7 @@ const routes: RouteRecordRaw[] = [
             name: 'MultiTwoTwo',
             component: <PageTwo />,
             meta: {
-              label: '页面二'
+              label: 'menus.multiMenu.two.pageTwo'
             }
           }
         ]
@@ -117,7 +117,7 @@ const routes: RouteRecordRaw[] = [
     path: '/system',
     name: 'System',
     meta: {
-      label: '系统管理',
+      label: 'menus.system.text',
       icon: <IconSettings size="22px" />
     },
     children: [
@@ -126,7 +126,7 @@ const routes: RouteRecordRaw[] = [
         name: 'Admin',
         component: <Admin />,
         meta: {
-          label: '用户管理',
+          label: 'menus.system.admin',
           icon: <IconUsers size="22px" />
         }
       },
@@ -135,7 +135,7 @@ const routes: RouteRecordRaw[] = [
         name: 'Admin',
         component: <Role />,
         meta: {
-          label: '角色管理',
+          label: 'menus.system.role',
           icon: <IconAdjustments size="22px" />
         }
       },
@@ -144,7 +144,7 @@ const routes: RouteRecordRaw[] = [
         name: 'Admin',
         component: <Menu />,
         meta: {
-          label: '菜单管理',
+          label: 'menus.system.menu',
           icon: <IconMenu2 size="22px" />
         }
       }
@@ -155,7 +155,7 @@ const routes: RouteRecordRaw[] = [
     name: 'About',
     component: <About />,
     meta: {
-      label: '关于',
+      label: 'menus.about',
       icon: <IconCopyright size="22px" />
     }
   }
