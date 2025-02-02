@@ -88,7 +88,7 @@ const Sidebar = () => {
       theme="light"
       className="shadow-lg"
       width="200"
-      style={{ height: 'calc(100vh - 56px)', overflowY: 'scroll' }}>
+      style={{ height: 'calc(100vh - 104px)', overflowY: 'scroll' }}>
       <Menu
         className="h-full"
         defaultSelectedKeys={[location.pathname]}

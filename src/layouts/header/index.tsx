@@ -1,5 +1,5 @@
-import React, { createRef, useEffect, useState } from 'react'
-import { Avatar, Dropdown, Input, InputRef, message } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { Avatar, Dropdown, message, Select } from 'antd'
 
 import { CaretDownFilled, LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
@@ -8,28 +8,79 @@ import { RootState } from '@/store'
 import useAsync from '@/hooks/useAsync'
 import { userLogin } from '@/store/user'
 import cache from '@/utils/cache'
-import { IconArrowsMaximize, IconReload, IconSearch, IconShirt, IconTransactionBitcoin } from '@tabler/icons-react'
+import { IconArrowsMaximize, IconArrowsMinimize, IconReload, IconSearch, IconShirt } from '@tabler/icons-react'
 import ThemeDrawer from '@/components/ThemeDrawer'
 import api from '@/api'
 import useI18n from '@/hooks/useI18n'
+import { dynamicRoutes, RouteRecordRaw } from '@/router'
+import Fuse, { FuseResult } from 'fuse.js'
+import { traverseTreeValues } from '@/utils/tree'
+import { TFunction } from 'i18next'
+
+type SearchData = {
+  path: string
+  name: string
+  label?: string
+}
+
+const getSearchData = (t: TFunction<'translation', undefined>) => {
+  return traverseTreeValues<
+    RouteRecordRaw,
+    {
+      name: string
+      path: string
+      label?: string
+      children: RouteRecordRaw[] | undefined
+    }
+  >(dynamicRoutes, (item) => ({
+    path: item.path,
+    name: item.name,
+    label: t(item.meta?.label || ''),
+    children: item.children
+  }))
+    .filter((item) => !item.children)
+    .map((item) => ({ name: item.name, path: item.path, label: item.label }))
+}
 
 const Header = () => {
-  const { lang, changeLanguage } = useI18n()
+  const { t, lang, changeLanguage } = useI18n()
   const navigate = useNavigate()
   const userState = useSelector((state: RootState) => state.user)
   const [showTheme, setShowTheme] = useState(false)
   const dispatch = useDispatch()
 
+  const [isFullScreen, setIsFullScreen] = useState(false)
+
+  const fuse = new Fuse(getSearchData(t), {
+    keys: ['path', 'name', 'label'], // 搜索字段
+    includeScore: true, // 返回匹配得分
+    threshold: 0.3 // 设置模糊搜索的阈值
+  })
   const [searchInputWidth, setSearchInputWidth] = useState(0)
-  const searchRef = createRef<InputRef>()
   const clickSearch = (e: React.MouseEvent<SVGElement>) => {
     e.stopPropagation()
     setSearchInputWidth(240)
-    searchRef.current!.focus()
   }
 
   const blurSearch = () => {
     setSearchInputWidth(0)
+  }
+
+  const [searchValue, setSearchValue] = useState('')
+  const [searchOptions, setSearchOptions] = useState<FuseResult<SearchData>[]>([])
+
+  const handleSearch = (value: string) => {
+    setSearchValue(value)
+  }
+
+  useEffect(() => {
+    const searchResults = fuse.search(searchValue)
+    setSearchOptions(searchResults)
+  }, [searchValue])
+
+  const handleSelect = (value: string) => {
+    navigate(value)
+    setSearchValue('')
   }
 
   useEffect(() => {
@@ -85,19 +136,46 @@ const Header = () => {
                 overflow: 'hidden',
                 transition: 'all 0.2s ease-in-out'
               }}>
-              <Input ref={searchRef} onBlur={() => blurSearch()} placeholder="Search" />
+              <Select
+                value={searchValue}
+                showSearch
+                defaultActiveFirstOption={false}
+                filterOption={false}
+                suffixIcon={null}
+                allowClear
+                onSearch={handleSearch}
+                options={(searchOptions || []).map((data) => ({
+                  value: data.item.path,
+                  label: data.item.label
+                }))}
+                onSelect={handleSelect}
+                className="w-full"
+              />
+              {/*<Input ref={searchRef} onChange={handleSearch} onBlur={() => blurSearch()} placeholder="Search" />*/}
             </div>
           </div>
           <div
             className="flex items-center mr-2 px-2 h-full  cursor-pointer hover:bg-gray-1"
             style={{ transition: 'all 0.2s ease-in-out' }}>
-            <IconArrowsMaximize
-              onClick={async () => {
-                await document.documentElement.requestFullscreen()
-              }}
-              className="active:text-blue-4 text-gray-5"
-              style={{ fontSize: '20px' }}
-            />
+            {isFullScreen ? (
+              <IconArrowsMinimize
+                onClick={async () => {
+                  await document.exitFullscreen()
+                  setIsFullScreen(false)
+                }}
+                className="active:text-blue-4 text-gray-5"
+                style={{ fontSize: '20px' }}
+              />
+            ) : (
+              <IconArrowsMaximize
+                onClick={async () => {
+                  await document.documentElement.requestFullscreen()
+                  setIsFullScreen(true)
+                }}
+                className="active:text-blue-4 text-gray-5"
+                style={{ fontSize: '20px' }}
+              />
+            )}
           </div>
           <div
             className="flex items-center mr-2 px-2 h-full  cursor-pointer hover:bg-gray-1"

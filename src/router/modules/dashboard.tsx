@@ -11,9 +11,6 @@ import {
   IconUsers
 } from '@tabler/icons-react'
 import React, { lazy } from 'react'
-import Admin from '@/views/system/admin'
-import Role from '@/views/system/role'
-import Menu from '@/views/system/menu'
 
 const User = lazy(() => import('@/views/user'))
 const Home = lazy(() => import('@/views/home'))
@@ -23,6 +20,9 @@ const One = lazy(() => import('@/views/multiMenu/one'))
 const PageOne = lazy(() => import('@/views/multiMenu/two/pageOne'))
 const PageTwo = lazy(() => import('@/views/multiMenu/two/pageTwo'))
 const Resource = lazy(() => import('@/views/resource'))
+const Admin = lazy(() => import('@/views/system/admin'))
+const Role = lazy(() => import('@/views/system/role'))
+const Menu = lazy(() => import('@/views/system/menu'))
 
 const routes: RouteRecordRaw[] = [
   {
