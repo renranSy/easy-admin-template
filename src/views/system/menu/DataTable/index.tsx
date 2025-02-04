@@ -2,6 +2,7 @@ import React, { forwardRef, useImperativeHandle } from 'react'
 import { Button, Popconfirm, Popover, Space, Table, TableProps, Tag } from 'antd'
 import { TableRowSelection } from 'antd/es/table/interface'
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons'
+import IButton from '@/components/IButton'
 
 type DataType = API.Menu
 
@@ -77,22 +78,29 @@ const DataTable = forwardRef<TableRef, Props>(
         width: 120,
         render: (user: API.User) => (
           <Space>
-            <Button
+            <IButton
+              code="MenuManage.edit"
               onClick={() => onOpenEdit(user.id || 0)}
               icon={<EditOutlined />}
               color="primary"
               variant="outlined"
-              size="small"></Button>
+              size="small"></IButton>
             <Popover content="添加子级菜单">
-              <Button
+              <IButton
+                code="MenuManage.add"
                 onClick={() => onOpenAdd(user)}
                 icon={<PlusOutlined />}
                 color="primary"
                 variant="outlined"
-                size="small"></Button>
+                size="small"></IButton>
             </Popover>
             <Popconfirm title="是否确认删除？" onConfirm={() => onDelete(user.id || 0)}>
-              <Button icon={<DeleteOutlined />} color="danger" variant="outlined" size="small"></Button>{' '}
+              <IButton
+                code="MenuManage.delete"
+                icon={<DeleteOutlined />}
+                color="danger"
+                variant="outlined"
+                size="small"></IButton>{' '}
             </Popconfirm>
           </Space>
         ),

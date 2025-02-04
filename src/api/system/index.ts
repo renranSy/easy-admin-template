@@ -10,14 +10,14 @@ export const login = (data: API.LoginParam) => {
 
 /** 获取管理员信息 */
 export const getUserInfo = () => {
-  return request<API.User>('/admin/get', {
+  return request<API.UserInfo>('/admin/get', {
     method: 'get'
   })
 }
 
 /** 获取管理员列表 */
 export const getUserList = () => {
-  return request<API.User[]>('/admin/list', {
+  return request<API.User[]>('/admin', {
     method: 'get'
   })
 }

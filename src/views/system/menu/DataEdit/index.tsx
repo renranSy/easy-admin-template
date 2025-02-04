@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Col, Form, Input, InputNumber, Modal, Radio, Row, Select, Space, Switch } from 'antd'
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
@@ -78,7 +78,7 @@ const DataEdit: React.FC<Props> = (props) => {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item<FormType> label="访问路径" name="path" rules={[{ required: true, message: '请输入访问路径' }]}>
+              <Form.Item<FormType> label="访问路径" name="path">
                 <Input />
               </Form.Item>
             </Col>
@@ -105,14 +105,14 @@ const DataEdit: React.FC<Props> = (props) => {
           <p className="font-bold mt-4 mb-2">API资源配置</p>
           <Row gutter={16} className="mb-3">
             <Col span={4}>请求方法</Col>
-            <Col span={16}>请求路径</Col>
-            <Col span={4}>操作</Col>
+            <Col span={18}>请求路径</Col>
+            <Col span={2}>操作</Col>
           </Row>
           <div ref={parent}>
-            <Form.List name="menuResources" initialValue={[{}]}>
+            <Form.List name="menuResources" initialValue={[]}>
               {(fields, { add, remove }) => (
                 <>
-                  {fields.map(({ key, name, ...restField }, index, array) => (
+                  {fields.map(({ key, name, ...restField }) => (
                     <Row gutter={16} key={key}>
                       <Col span={4}>
                         <Form.Item<SubFormType> {...restField} name={[name, 'method']} initialValue="GET">
@@ -128,33 +128,29 @@ const DataEdit: React.FC<Props> = (props) => {
                           />
                         </Form.Item>
                       </Col>
-                      <Col span={16}>
+                      <Col span={18}>
                         <Form.Item<SubFormType> {...restField} name={[name, 'path']}>
                           <Input allowClear />
                         </Form.Item>
                       </Col>
-                      <Col span={4}>
+                      <Col span={2}>
                         <Form.Item>
-                          <Space>
-                            {index === array.length - 1 ? (
-                              <Button
-                                onClick={() => add()}
-                                icon={<PlusOutlined />}
-                                color="default"
-                                variant="outlined"></Button>
-                            ) : null}
-                            {array.length !== 1 ? (
-                              <Button
-                                onClick={() => remove(name)}
-                                icon={<DeleteOutlined />}
-                                color="default"
-                                variant="outlined"></Button>
-                            ) : null}
-                          </Space>
+                          <Button
+                            onClick={() => remove(name)}
+                            icon={<DeleteOutlined />}
+                            color="default"
+                            variant="outlined"></Button>
                         </Form.Item>
                       </Col>
                     </Row>
                   ))}
+                  <Row>
+                    <Col span={24}>
+                      <Button onClick={() => add()} icon={<PlusOutlined />} block color="default" variant="dashed">
+                        添加
+                      </Button>
+                    </Col>
+                  </Row>
                 </>
               )}
             </Form.List>

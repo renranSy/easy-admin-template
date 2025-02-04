@@ -14,19 +14,23 @@ type Props = {
 const PermissionEdit: React.FC<Props> = (props) => {
   const [permissionList, setPermissionList] = useState<TreeDataNode[]>([])
   const [checkedIdList, setCheckedIdList] = useState<number[]>([])
+  const [halfCheckedKeys, setHalfCheckedKeys] = useState<number[]>([])
+
   const handleEdit = async () => {
-    await props.onEdit(props.roleId, checkedIdList)
+    await props.onEdit(props.roleId, getAllKeys())
   }
 
-  const getList = async () => {
+  const getList = async (menuList: TreeDataNode[]) => {
     setCheckedIdList([])
     const res = await api.getRolePermission(props.roleId)
-    setCheckedIdList(res.data.list)
+    setCheckedIdList(setTreeKeys(res.data.list, menuList))
   }
 
   const getMenuList = async () => {
     const res = await api.getMenuList()
-    setPermissionList(transformMenuItems(res.data))
+    const list = transformMenuItems(res.data)
+    setPermissionList(list)
+    return list
   }
 
   const transformMenuItems = (items: API.Menu[]): TreeDataNode[] => {
@@ -37,14 +41,55 @@ const PermissionEdit: React.FC<Props> = (props) => {
     }))
   }
 
-  const onCheck: TreeProps['onCheck'] = (checkedKeys) => {
+  const onCheck: TreeProps['onCheck'] = (checkedKeys, info) => {
     setCheckedIdList(checkedKeys as number[])
+    setHalfCheckedKeys(info.halfCheckedKeys as number[])
+  }
+
+  const getAllKeys = () => {
+    return [...checkedIdList, ...halfCheckedKeys]
+  }
+
+  const setTreeKeys = (selectedKeys: number[], menuList: TreeDataNode[]) => {
+    const keys: number[] = []
+
+    const postorder = (root: TreeDataNode) => {
+      const stack: TreeDataNode[] = [root]
+      const outStack: TreeDataNode[] = []
+      while (stack.length > 0) {
+        const node = stack.pop()
+        if (node) {
+          outStack.push(node)
+        }
+        if (node?.children) {
+          stack.push(...node.children)
+        }
+      }
+      while (outStack.length > 0) {
+        const node = outStack.pop()
+        if (node?.children) {
+          if (node.children.every((item) => keys.includes(item.key as number))) {
+            keys.push(node.key as number)
+          }
+        } else {
+          if (selectedKeys.includes(node!.key as number)) {
+            keys.push(node!.key as number)
+          }
+        }
+      }
+    }
+    menuList.forEach((root) => {
+      postorder(root)
+    })
+
+    setHalfCheckedKeys(selectedKeys.filter((item) => !keys.includes(item)))
+    return keys
   }
 
   useAsync(async () => {
     if (props.open) {
-      await getList()
-      await getMenuList()
+      const menuList = await getMenuList()
+      await getList(menuList)
     }
   }, [props.open])
 

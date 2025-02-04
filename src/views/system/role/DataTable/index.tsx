@@ -4,6 +4,7 @@ import { TableRowSelection } from 'antd/es/table/interface'
 import { DeleteOutlined, EditOutlined, UserOutlined } from '@ant-design/icons'
 import PermissionEdit from '@/views/system/role/PermissionEdit'
 import api from '@/api'
+import IButton from '@/components/IButton'
 
 type DataType = API.Role
 
@@ -69,20 +70,27 @@ const DataTable: React.FC<Props> = ({ data, loading, onDelete, onOpenEdit, getDa
       width: 100,
       render: (role: API.Role) => (
         <Space>
-          <Button
+          <IButton
+            code="RoleManage.edit"
             onClick={() => onOpenEdit(role)}
             icon={<EditOutlined />}
             color="primary"
             variant="outlined"
-            size="small"></Button>
-          <Button
+            size="small"></IButton>
+          <IButton
+            code="RoleManage.edit"
             onClick={() => handleOpenPermissionEdit(role.id || 0)}
             icon={<UserOutlined />}
             color="primary"
             variant="outlined"
-            size="small"></Button>
+            size="small"></IButton>
           <Popconfirm title="是否确认删除？" onConfirm={() => onDelete(role.id || 0)}>
-            <Button icon={<DeleteOutlined />} color="danger" variant="outlined" size="small"></Button>{' '}
+            <IButton
+              code="RoleManage.delete"
+              icon={<DeleteOutlined />}
+              color="danger"
+              variant="outlined"
+              size="small"></IButton>{' '}
           </Popconfirm>
         </Space>
       )

@@ -4,7 +4,7 @@ import { App, Button, Input, InputRef } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import cache from '@/utils/cache'
 import { useDispatch } from 'react-redux'
-import { userLogin } from '@/store/user'
+import { setUserInfo } from '@/store/user'
 import useAsync from '@/hooks/useAsync'
 import api from '@/api'
 import useI18n from '@/hooks/useI18n'
@@ -43,7 +43,7 @@ const Login = () => {
     if (resp.code === 200) {
       message.success('登录成功')
       cache.set('token', resp.data.token)
-      dispatch(userLogin(resp.data.userInfo))
+      dispatch(setUserInfo(resp.data.userInfo))
       navigate('/')
     } else {
       message.error(resp.message)
@@ -53,7 +53,7 @@ const Login = () => {
   useAsync(async () => {
     const resp = await api.getUserInfo()
     if (resp.code == 200) {
-      dispatch(userLogin(resp.data))
+      dispatch(setUserInfo(resp.data))
       navigate('/')
       message.warning('请勿重复登录！')
     }

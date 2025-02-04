@@ -123,7 +123,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '/system/admin',
-        name: 'Admin',
+        name: 'AdminManage',
         component: <Admin />,
         meta: {
           label: 'menus.system.admin',
@@ -132,7 +132,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: '/system/role',
-        name: 'Admin',
+        name: 'RoleManage',
         component: <Role />,
         meta: {
           label: 'menus.system.role',
@@ -141,7 +141,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: '/system/menu',
-        name: 'Admin',
+        name: 'MenuManage',
         component: <Menu />,
         meta: {
           label: 'menus.system.menu',

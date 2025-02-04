@@ -6,6 +6,7 @@ import api from '@/api'
 import DataTable, { TableColumn, TableRef } from '@/views/system/menu/DataTable'
 import DataAdd from '@/views/system/menu/DataAdd'
 import DataEdit from '@/views/system/menu/DataEdit'
+import IButton from '@/components/IButton'
 
 const Menu = () => {
   const tableRef = useRef<TableRef>(null)
@@ -118,12 +119,17 @@ const Menu = () => {
         <div className="flex justify-between">
           <div className="font-bold text-[1rem]">菜单列表</div>
           <Space>
-            <Button onClick={handleAddParent} color="primary" variant="outlined" icon={<PlusOutlined />}>
+            <IButton
+              code="MenuManage.add"
+              onClick={handleAddParent}
+              color="primary"
+              variant="outlined"
+              icon={<PlusOutlined />}>
               新增
-            </Button>
-            <Button color="danger" variant="outlined" icon={<DeleteFilled />}>
+            </IButton>
+            <IButton code="MenuManage.delete" color="danger" variant="outlined" icon={<DeleteFilled />}>
               批量删除
-            </Button>
+            </IButton>
             <Button onClick={getData} color="default" variant="outlined" icon={<ReloadOutlined />}>
               刷新
             </Button>

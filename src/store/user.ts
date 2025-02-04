@@ -1,23 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-export type UserState = API.User
+export type UserState = API.UserInfo
 
 const initialState = {
   username: '',
-  avatar: '',
-  role: ''
+  buttons: [],
+  menus: []
 } as UserState
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    userLogin: (state, action: PayloadAction<UserState>) => {
+    setUserInfo: (state, action: PayloadAction<UserState>) => {
       state.username = action.payload.username
-      state.id = action.payload.id
+      state.buttons = action.payload.buttons
+      state.menus = action.payload.menus
     }
   }
 })
 
-export const { userLogin } = userSlice.actions
+export const { setUserInfo } = userSlice.actions
 export default userSlice.reducer

@@ -6,6 +6,7 @@ import api from '@/api'
 import DataTable from '@/views/system/role/DataTable'
 import DataAdd from '@/views/system/role/DataAdd'
 import DataEdit from '@/views/system/role/DataEdit'
+import IButton from '@/components/IButton'
 
 const Role = () => {
   const [roleList, setRoleList] = useState<API.Role[]>([])
@@ -78,12 +79,17 @@ const Role = () => {
         <div className="flex justify-between">
           <div className="font-bold text-[1rem]">角色列表</div>
           <Space>
-            <Button onClick={() => setOpenAdd(true)} color="primary" variant="outlined" icon={<PlusOutlined />}>
+            <IButton
+              code="RoleManage.add"
+              onClick={() => setOpenAdd(true)}
+              color="primary"
+              variant="outlined"
+              icon={<PlusOutlined />}>
               新增
-            </Button>
-            <Button color="danger" variant="outlined" icon={<DeleteFilled />}>
+            </IButton>
+            <IButton code="RoleManage.delete" color="danger" variant="outlined" icon={<DeleteFilled />}>
               批量删除
-            </Button>
+            </IButton>
             <Button onClick={getData} color="default" variant="outlined" icon={<ReloadOutlined />}>
               刷新
             </Button>

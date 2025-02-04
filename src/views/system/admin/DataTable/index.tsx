@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Popconfirm, Space, Table, TableProps, Tag } from 'antd'
 import { TableRowSelection } from 'antd/es/table/interface'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import IButton from '@/components/IButton'
 
 type DataType = API.User
 
@@ -57,14 +58,20 @@ const DataTable: React.FC<Props> = ({ data, roleList, loading, onDelete, onOpenE
       width: 100,
       render: (user: API.User) => (
         <Space>
-          <Button
+          <IButton
+            code="AdminManage.edit"
             onClick={() => onOpenEdit(user)}
             icon={<EditOutlined />}
             color="primary"
             variant="outlined"
-            size="small"></Button>
+            size="small"></IButton>
           <Popconfirm title="是否确认删除？" onConfirm={() => onDelete(user.id || 0)}>
-            <Button icon={<DeleteOutlined />} color="danger" variant="outlined" size="small"></Button>{' '}
+            <IButton
+              code="AdminManage.delete"
+              icon={<DeleteOutlined />}
+              color="danger"
+              variant="outlined"
+              size="small"></IButton>{' '}
           </Popconfirm>
         </Space>
       )

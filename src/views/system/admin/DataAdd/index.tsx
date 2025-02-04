@@ -32,7 +32,9 @@ const DataAdd: React.FC<Props> = (props) => {
 
   const getRoleList = async () => {
     const res = await api.getRoleList()
-    setRoleList(res.data)
+    if (res.code === 200) {
+      setRoleList(res.data)
+    }
   }
 
   const handleAdd: FormProps<FormType>['onFinish'] = async (values) => {

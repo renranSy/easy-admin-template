@@ -12,11 +12,7 @@ declare namespace API {
 
   type LoginResponse = {
     token: string
-    userInfo: {
-      username: string
-      avatar: string
-      role: string
-    }
+    userInfo: UserInfo
   }
 
   type User = {
@@ -26,6 +22,12 @@ declare namespace API {
     email?: string
     status?: number
     createdAt?: string
+  }
+
+  type UserInfo = {
+    username: string
+    buttons: string[]
+    menus: string[]
   }
 
   type AddUser = {

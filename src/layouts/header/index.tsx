@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/store'
 import useAsync from '@/hooks/useAsync'
-import { userLogin } from '@/store/user'
+import { setUserInfo } from '@/store/user'
 import cache from '@/utils/cache'
 import { IconArrowsMaximize, IconArrowsMinimize, IconReload, IconSearch, IconShirt } from '@tabler/icons-react'
 import ThemeDrawer from '@/components/ThemeDrawer'
@@ -95,7 +95,7 @@ const Header = () => {
   useAsync(async () => {
     const resp = await api.getUserInfo()
     if (resp.code === 200) {
-      dispatch(userLogin(resp.data))
+      dispatch(setUserInfo(resp.data))
     } else {
       navigate('/login')
       message.warning(resp.message)

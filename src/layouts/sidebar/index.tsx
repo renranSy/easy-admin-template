@@ -5,9 +5,12 @@ import Sider from 'antd/es/layout/Sider'
 import { RouteRecordRaw } from '@/router'
 import dashboard from '@/router/modules/dashboard'
 import useI18n from '@/hooks/useI18n'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/store'
 
 type MenuItem = {
   key: string
+  name: string
   label: string
   icon?: ReactNode
   children?: MenuItem[]
@@ -22,10 +25,12 @@ const convertRoutesToMenuItems = (routes: RouteRecordRaw[]): MenuItem[] => {
       ? {
           label: route.meta.label,
           key: route.path,
+          name: route.name,
           icon: route.meta?.icon
         }
       : {
           label: route.meta.label,
+          name: route.name,
           key: route.path
         }
 
@@ -39,6 +44,8 @@ const convertRoutesToMenuItems = (routes: RouteRecordRaw[]): MenuItem[] => {
 export const MenuItems = convertRoutesToMenuItems(dashboard)
 
 const Sidebar = () => {
+  const userState = useSelector((state: RootState) => state.user)
+
   const location = useLocation()
   const navigate = useNavigate()
   const { t } = useI18n()
@@ -71,13 +78,15 @@ const Sidebar = () => {
   }
 
   const translateMenus = (menuItems: MenuItem[]) => {
-    return menuItems.map((item) => {
-      item.label = t(item.label)
-      if (item.children) {
-        translateMenus(item.children)
-      }
-      return item
-    })
+    return menuItems
+      .map((item) => {
+        item.label = t(item.label)
+        if (item.children) {
+          item.children = translateMenus(item.children)
+        }
+        return item
+      })
+      .filter((item) => userState.menus.includes(item.name))
   }
 
   return (

@@ -6,6 +6,7 @@ import api from '@/api'
 import DataTable from '@/views/system/admin/DataTable'
 import DataAdd from '@/views/system/admin/DataAdd'
 import DataEdit from '@/views/system/admin/DataEdit'
+import IButton from '@/components/IButton'
 
 const Admin = () => {
   const [adminList, setAdminList] = useState<API.User[]>([])
@@ -28,12 +29,16 @@ const Admin = () => {
     setTableLoading(true)
     const res = await api.getUserList()
     setTableLoading(false)
-    setAdminList(res.data)
+    if (res.code === 200) {
+      setAdminList(res.data)
+    }
   }
 
   const getRoleList = async () => {
     const res = await api.getRoleList()
-    setRoleList(res.data)
+    if (res.code === 200) {
+      setRoleList(res.data)
+    }
   }
 
   const handleEdit = async (values: API.User) => {
@@ -85,12 +90,17 @@ const Admin = () => {
         <div className="flex justify-between">
           <div className="font-bold text-[1rem]">用户列表</div>
           <Space>
-            <Button onClick={() => setOpenAdd(true)} color="primary" variant="outlined" icon={<PlusOutlined />}>
+            <IButton
+              code="AdminManage.add"
+              onClick={() => setOpenAdd(true)}
+              color="primary"
+              variant="outlined"
+              icon={<PlusOutlined />}>
               新增
-            </Button>
-            <Button color="danger" variant="outlined" icon={<DeleteFilled />}>
+            </IButton>
+            <IButton code="AdminManage.delete" color="danger" variant="outlined" icon={<DeleteFilled />}>
               批量删除
-            </Button>
+            </IButton>
             <Button onClick={getData} color="default" variant="outlined" icon={<ReloadOutlined />}>
               刷新
             </Button>
