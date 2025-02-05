@@ -9,6 +9,8 @@
 `Easy-admin-template`是一个免费开源的中后台模版，使用了`React18`、`vite`、`react-router-dom v6`、`less`
 等主流技术开发，开箱即用的中后天前端解决方案。
 
+Demo地址: [https://easy.renranz.cn](https://easy.renranz.cn)
+
 后端模版: [https://github.com/renranSy/easy-gin-template](https://github.com/renranSy/easy-gin-template)
 
 项目目的：
@@ -23,12 +25,12 @@
 ## 特性
 
 - 技术栈：React、react-router-dom、vite、less
-- Mock 模拟数据
 - Ant Design组件库
 - 二次封装Axios
 - 可自定义主题
 - 封装通用右键菜单组件
-- 动态路由
+- RBAC权限控制，动态路由，权限按钮
+- i18n国际化
 
 ## 获取代码
 
