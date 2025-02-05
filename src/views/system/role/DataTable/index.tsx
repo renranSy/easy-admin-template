@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Button, message, Popconfirm, Space, Table, TableProps, Tag } from 'antd'
+import React, { useState } from 'react'
+import { message, Popconfirm, Space, Table, TableProps, Tag } from 'antd'
 import { TableRowSelection } from 'antd/es/table/interface'
 import { DeleteOutlined, EditOutlined, UserOutlined } from '@ant-design/icons'
 import PermissionEdit from '@/views/system/role/PermissionEdit'

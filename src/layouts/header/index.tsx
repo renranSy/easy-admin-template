@@ -16,6 +16,7 @@ import { dynamicRoutes, RouteRecordRaw } from '@/router'
 import Fuse, { FuseResult } from 'fuse.js'
 import { traverseTreeValues } from '@/utils/tree'
 import { TFunction } from 'i18next'
+import logoImg from '@/assets/logo.svg'
 
 type SearchData = {
   path: string
@@ -113,7 +114,7 @@ const Header = () => {
           zIndex: '999'
         }}>
         <div className="flex items-center">
-          <img style={{ width: '36px', height: '36px' }} src="/src/assets/logo.svg" alt="" />
+          <img style={{ width: '36px', height: '36px' }} src={logoImg} alt="" />
           <div className="font-bold ml-3" style={{ fontSize: 20 }}>
             Easy Admin
           </div>

@@ -8,6 +8,8 @@ import { setUserInfo } from '@/store/user'
 import useAsync from '@/hooks/useAsync'
 import api from '@/api'
 import useI18n from '@/hooks/useI18n'
+import loginPersonImage from '@/assets/images/login_person.png'
+import loginBGImage from '@/assets/images/login_bg.png'
 
 const Login = () => {
   const { message } = App.useApp()
@@ -62,7 +64,7 @@ const Login = () => {
   return (
     <div
       style={{
-        backgroundImage: 'url(/src/assets/images/login_bg.png)',
+        backgroundImage: `url(${loginBGImage})`,
         backgroundSize: '100% 100%',
         backgroundPosition: 'center',
         height: '100vh',
@@ -96,7 +98,7 @@ const Login = () => {
               width: '80%',
               height: 'auto'
             }}
-            src="/src/assets/images/login_person.png"
+            src={loginPersonImage}
             alt=""
           />
         </div>
