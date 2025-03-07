@@ -41,19 +41,19 @@ git clone https://github.com/renranSy/easy-admin-template.git
 - 安装依赖
 
 ```shell
-yarn install
+pnpm install
 ```
 
 - 运行
 
 ```shell
-yarn dev
+pnpm dev
 ```
 
 - 打包
 
 ```shell
-yarn build
+pnpm build
 ```
 
 ## 浏览器支持
@@ -65,7 +65,3 @@ yarn build
 ## 维护者
 
 [@renranSy](https://github.com/renranSy)
-
-## 参考项目
-
-[Arco admin template](https://github.com/renranSy/easy-admin-template.git)

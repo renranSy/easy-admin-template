@@ -106,7 +106,7 @@ const IDropdown: React.FC<Props> = ({ children, items }) => {
             className="hide pos-relative rounded-md b b-solid b-gray-1 bg-white p-1 shadow-md transition-opacity z-[2]">
             {childList.map((item) => (
               <div
-                onClick={(e) => e.stopPropagation()}
+                onClick={item.onClick}
                 className="flex items-center justify-between px-2 h-[2.4rem] text-nowrap text-[#818ea3] cursor-pointer rounded-md hover:bg-gray-1 hover:text-[#18181b] hover:stroke-[#18181b]"
                 key={item.key}>
                 <div className="flex items-center">
